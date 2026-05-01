@@ -31,7 +31,8 @@ def validate_manifest_url(url: str) -> bool:
 
 CLASSIFY_PROMPT = '''
 Analyze this excerpt from an Indian political manifesto.
-Return JSON: {{ "category": one of [economy|healthcare|education|environment|governance|agriculture|defense],
+Return JSON: {{ "category": one of [economy|healthcare|education|environment|
+  governance|agriculture|defense],
   "stance": "plain English summary max 20 words",
   "stance_score": float 0.0-1.0 (0=conservative, 1=progressive),
   "confidence": float 0.0-1.0 }}
