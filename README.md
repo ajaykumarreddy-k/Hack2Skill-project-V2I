@@ -93,6 +93,7 @@ V2I maintains high standards of code hygiene across both the frontend SPA and th
 | `ai/workers/` | Security & Validation | ✅ SSRF guards active on PyMuPDFLoaders to prevent internal network scanning |
 | `core/` | Architecture | ✅ Clean FastAPI routing, AsyncPG connections, environment isolation |
 | `Dependencies`| Management | ✅ Migrated to `uv` for reproducible, lightning-fast dependency resolution |
+| `Testing` | Automated Coverage | ✅ [View Latest Test Results (Passing)](backend/tests/test_results.md) |
 
 ---
 
