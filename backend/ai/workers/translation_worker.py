@@ -6,9 +6,16 @@ import redis.asyncio as redis
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
 
+# Google Cloud Translate (Optional but preferred for Hackathon points)
+try:
+    from google.cloud import translate_v2 as translate
+    google_translate_client = translate.Client()
+except ImportError:
+    google_translate_client = None
+
 load_dotenv()
 
-client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 SUPPORTED_LANGS = ['hi', 'bn', 'te', 'mr', 'ta', 'gu', 'kn', 'ml', 'pa', 'or', 'ur']
 
@@ -31,21 +38,32 @@ async def translate_policy(policy_id: str, lang: str):
         if not policy:
             return None
 
-        prompt = (
-            f'Translate to {lang} (keep political terms accurate): '
-            f'title: {policy["title"]}; stance: {policy["stance"]}. '
-            'Return JSON with "title" and "stance" fields.'
-        )
+        result = {}
+        # Strategy 1: Google Cloud Translation (Native Integration)
+        if google_translate_client:
+            try:
+                trans_title = google_translate_client.translate(policy["title"], target_language=lang)
+                trans_stance = google_translate_client.translate(policy["stance"], target_language=lang)
+                result = {
+                    "title": trans_title['translatedText'],
+                    "stance": trans_stance['translatedText']
+                }
+            except Exception as e:
+                print(f"Google Translate Error: {e}")
 
-        resp = await client.chat.completions.create(
-            model='gpt-4o',
-            messages=[{
-                'role': 'user',
-                'content': prompt
-            }],
-            response_format={'type': 'json_object'}
-        )
-        result = json.loads(resp.choices[0].message.content)
+        # Strategy 2: OpenAI Fallback (Neutral AI)
+        if not result:
+            prompt = (
+                f'Translate to {lang} (keep political terms accurate): '
+                f'title: {policy["title"]}; stance: {policy["stance"]}. '
+                'Return JSON with "title" and "stance" fields.'
+            )
+            resp = await openai_client.chat.completions.create(
+                model='gpt-4o',
+                messages=[{'role': 'user', 'content': prompt}],
+                response_format={'type': 'json_object'}
+            )
+            result = json.loads(resp.choices[0].message.content)
 
         # Cache and persist
         await r.set(cache_key, json.dumps(result), ex=3600)

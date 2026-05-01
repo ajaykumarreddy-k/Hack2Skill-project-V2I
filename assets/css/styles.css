@@ -420,6 +420,10 @@ body {
     }
 }
 
+#view-landing {
+    background: #000000 !important;
+}
+
 /* ================= HERO ================= */
 .hero {
     min-height: 100vh;
@@ -1198,9 +1202,10 @@ body {
 
 /* Standard Footer (Dark Mode to match Cool Footer) */
 .footer-standard {
-    background: #000000;
-    padding: 0 2rem 4rem;
-    color: #ffffff;
+    background: #000000 !important;
+    padding: 4rem 2rem;
+    color: #ffffff !important;
+    width: 100%;
 }
 
 .footer-standard .footer-inner {
@@ -1220,7 +1225,7 @@ body {
     flex-wrap: wrap;
     gap: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-standard .footer-brand .g-logo-icon {
@@ -1228,10 +1233,11 @@ body {
 }
 
 .footer-standard .footer-brand p {
-    color: rgba(255, 255, 255, 0.7);
+    color: #ffffff !important;
     font-size: 1rem;
     max-width: 300px;
     line-height: 1.5;
+    opacity: 1 !important;
 }
 
 .footer-standard .footer-links {
@@ -1243,31 +1249,34 @@ body {
 .footer-standard .footer-col h4 {
     font-family: 'Google Sans', sans-serif;
     font-weight: 500;
-    color: #ffffff;
+    color: #ffffff !important;
     margin-bottom: 16px;
+    opacity: 1 !important;
 }
 
 .footer-standard .footer-col a {
     display: block;
-    color: rgba(255, 255, 255, 0.7);
+    color: #ffffff !important;
     text-decoration: none;
     margin-bottom: 12px;
     font-size: 0.9375rem;
     transition: color 0.2s;
+    opacity: 1 !important;
 }
 
 .footer-standard .footer-col a:hover {
-    color: #ffffff;
+    color: var(--g-blue) !important;
 }
 
 .footer-standard .footer-bottom {
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: rgba(255, 255, 255, 0.5);
+    color: #ffffff !important;
     font-size: 0.875rem;
+    opacity: 1 !important;
 }
 
 /* ================= APP VIEWS (Dashboard, Compare, etc.) ================= */
@@ -1773,4 +1782,28 @@ html.translated-rtl body {
 /* Fix UI breakdowns caused by Google injecting <font> tags inside flex containers */
 font {
     display: contents !important;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    background: #000000;
+    color: #ffffff;
+    padding: 64px 0 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer .nav-logo {
+    color: #ffffff;
+}
+
+.footer a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer a:hover {
+    color: #ffffff;
 }
