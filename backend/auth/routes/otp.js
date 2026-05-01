@@ -18,6 +18,11 @@ const safeCompare = (a, b) => {
   } catch { return false; }
 };
 
+/**
+ * @route POST /auth/otp/send
+ * @desc Send OTP to voter mobile/email
+ * @access Public
+ */
 router.post('/otp/send', async (req, res) => {
   try {
     const { phone } = req.body;
@@ -52,6 +57,11 @@ router.post('/otp/send', async (req, res) => {
   }
 });
 
+/**
+ * @route POST /auth/otp/verify
+ * @desc Verify OTP and issue KYC token
+ * @access Public
+ */
 router.post('/otp/verify', async (req, res) => {
   try {
     const { sessionToken, otp } = req.body;

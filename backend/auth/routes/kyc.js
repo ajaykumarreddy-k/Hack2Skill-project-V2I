@@ -23,6 +23,11 @@ const authenticateKycToken = (req, res, next) => {
   }
 };
 
+/**
+ * @route POST /auth/kyc/verify
+ * @desc Verify voter Aadhaar and EPIC number
+ * @access Private (KYC Token Required)
+ */
 router.post('/kyc/verify', authenticateKycToken, async (req, res) => {
   try {
     const { aadhaar, epicNumber } = req.body;

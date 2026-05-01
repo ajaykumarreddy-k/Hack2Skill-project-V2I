@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS users (
     aadhaar_hash VARCHAR(64) UNIQUE,
     epic_hash VARCHAR(64),
     phone_hash VARCHAR(64),
+    email VARCHAR(255) UNIQUE,
+    google_id VARCHAR(255) UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -64,4 +66,13 @@ CREATE TABLE IF NOT EXISTS user_preferences (
     preferences JSONB DEFAULT '{}',
     alignment_scores JSONB DEFAULT '{}',
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Vote Events (Log for BigQuery streaming)
+CREATE TABLE IF NOT EXISTS vote_events (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    voter_id UUID REFERENCES users(id),
+    constituency VARCHAR(255),
+    candidate_id VARCHAR(255),
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

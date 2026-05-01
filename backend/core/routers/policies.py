@@ -17,6 +17,19 @@ async def compare_policies(
     db=Depends(get_db),
     cache=Depends(get_cache)
 ):
+    """
+    Compare political policies across different parties and categories.
+    
+    Args:
+        category: Filter by policy category (e.g., 'Economy')
+        party_ids: List of party IDs to compare
+        lang: Target language code for translation
+        db: Database connection dependency
+        cache: Cache connection dependency
+        
+    Returns:
+        dict: Matrix of policies grouped by category
+    """
     cache_key = f'compare:{category}:{sorted(party_ids or [])}:{lang}'
     cached = await cache.get(cache_key)
     if cached:
@@ -57,6 +70,16 @@ async def compare_policies(
 
 @router.post('/alignment/score')
 async def compute_alignment(responses: Dict[str, Any], db=Depends(get_db)):
+    """
+    Compute political alignment score for a user based on their priorities.
+    
+    Args:
+        responses: User weights for different policy categories
+        db: Database connection dependency
+        
+    Returns:
+        dict: Alignment scores for each party and the top match
+    """
     '''
     responses = { 'weights': { 'healthcare': 5, 'tax_reform': 2, ... } }
     '''

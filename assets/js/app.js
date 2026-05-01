@@ -242,6 +242,35 @@ function simulateKYC() {
     }, 1500);
 }
 
+/**
+ * Simulate Google OAuth login flow for demonstration.
+ */
+function simulateGoogleLogin() {
+    const btn = document.querySelector('.btn-google');
+    if (btn) {
+        btn.innerHTML = '<span class="material-symbols-rounded icon-spin notranslate" translate="no" style="font-size:18px;">autorenew</span> Authenticating...';
+        btn.style.opacity = '0.8';
+    }
+
+    setTimeout(() => {
+        // Move to KYC step directly for Google Login
+        const step1 = document.getElementById('login-step-1');
+        const step2 = document.getElementById('login-step-2');
+        if (step1) step1.style.display = 'none';
+        if (step2) step2.style.display = 'block';
+
+        const dot1 = document.getElementById('dot-1');
+        const dot2 = document.getElementById('dot-2');
+        if (dot1) dot1.classList.remove('active');
+        if (dot2) dot2.classList.add('active');
+
+        // Track action using Google Analytics (if integrated)
+        if (typeof trackVoterAction === 'function') {
+            trackVoterAction('Login', 'Google');
+        }
+    }, 1500);
+}
+
 // ----- Trial EVM Logic -----
 function castTrialVote(rowElement) {
     if (rowElement.classList.contains('disabled')) return;

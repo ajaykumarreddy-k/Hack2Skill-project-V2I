@@ -1,3 +1,7 @@
+"""
+Vote2India Core API
+FastAPI application entry point for voter authentication and results.
+"""
 import os
 
 from dotenv import load_dotenv
@@ -20,6 +24,15 @@ api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
 
 
 async def get_api_key(api_key_header: str = Security(api_key_header)):
+    """
+    Validate the internal API key for secure service-to-service communication.
+    
+    Args:
+        api_key_header: The API key from the request header
+        
+    Returns:
+        str: The validated API key
+    """
     if os.getenv("API_KEY_REQUIRED", "false").lower() == "true":
         if api_key_header == os.getenv("V2I_API_KEY"):
             return api_key_header
@@ -43,6 +56,12 @@ app.include_router(policies.router, dependencies=[Depends(get_api_key)])
 
 @app.get("/health")
 async def health_check():
+    """
+    Health check endpoint for container orchestrators and monitoring tools.
+    
+    Returns:
+        dict: Service status, version, and mode information
+    """
     return {
         "status": "up",
         "service": "core-api",
