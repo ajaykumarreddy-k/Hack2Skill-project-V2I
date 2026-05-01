@@ -22,8 +22,8 @@
 
     /* Typography */
     --text-primary: #202124;
-    --text-secondary: #5f6368;
-    --text-disabled: #80868b;
+    --text-secondary: #3c4043; /* Darker for WCAG compliance */
+    --text-disabled: #5f6368;  /* Darker for WCAG compliance */
 
     /* Borders & Shadows */
     --border-color: #dadce0;

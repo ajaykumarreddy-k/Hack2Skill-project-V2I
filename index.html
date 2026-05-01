@@ -31,13 +31,14 @@
         src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- NAVIGATION -->
-    <nav class="nav" id="main-nav">
-        <a class="nav-logo notranslate" translate="no" onclick="switchView('landing')" role="link" aria-label="V2I Home" tabindex="0">
-            <div class="g-logo-icon">
-                <span class="material-symbols-rounded notranslate" translate="no" aria-hidden="true">how_to_vote</span>
-            </div>
-            V2I
-        </a>
+    <header class="header">
+        <nav class="nav" id="main-nav" role="navigation">
+            <a class="nav-logo notranslate" translate="no" onclick="switchView('landing')" role="link" aria-label="V2I Home" tabindex="0">
+                <div class="g-logo-icon">
+                    <span class="material-symbols-rounded notranslate" translate="no" aria-hidden="true">how_to_vote</span>
+                </div>
+                V2I
+            </a>
         <div class="nav-links" role="menubar">
             <a class="nav-link active" onclick="switchView('landing')" role="menuitem" tabindex="0" aria-label="Go to Overview">Overview</a>
             <a class="nav-link" onclick="switchView('dashboard')" role="menuitem" tabindex="0" aria-label="Go to Dashboard">Dashboard</a>
@@ -91,6 +92,7 @@
             </button>
         </div>
     </nav>
+</header>
 
     <main id="app" role="main">
 
@@ -562,7 +564,7 @@
                     </div>
                     <div class="footer-bottom">
                         <span>© 2026 V2I Initiative. Not affiliated with any government entity.</span>
-                        <button class="to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                        <button class="to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll back to the top of the page">
                             <span class="material-symbols-rounded notranslate" translate="no"
                                 style="font-size:18px; margin-right: 4px;">arrow_upward</span> Back to top
                         </button>
@@ -590,7 +592,7 @@
                         parties truly match your values, or practice using our simulated voting booth below.
                     </p>
                     <div style="display:flex; gap:16px; flex-wrap: wrap;">
-                        <button class="btn-primary" onclick="switchView('quiz')">
+                        <button class="btn-primary" onclick="switchView('quiz')" aria-label="Start the civic awareness questionnaire">
                             <span class="material-symbols-rounded notranslate" translate="no"
                                 style="font-size:20px;">psychology</span>
                             Take Questionnaire
@@ -997,7 +999,7 @@
                                                 translate="no" style="font-size:18px;">remove</span> Co-operative
                                             farming focus</span>
                                         <span class="material-symbols-rounded info-icon notranslate" translate="no"
-                                            title="View details">info</span>
+                                            title="View details" aria-label="Read more details about this policy promise">info</span>
                                     </div>
                                 </td>
                             </tr>
@@ -1009,7 +1011,7 @@
                                                 translate="no" style="font-size:18px;">remove</span> Expand STEM
                                             institutes</span>
                                         <span class="material-symbols-rounded info-icon notranslate" translate="no"
-                                            title="View details">info</span>
+                                            title="View details" aria-label="View more details about this policy">info</span>
                                     </div>
                                 </td>
                                 <td>
@@ -1018,7 +1020,7 @@
                                                 translate="no" style="font-size:18px;">check_circle</span> Increase
                                             budget to 6% GDP</span>
                                         <span class="material-symbols-rounded info-icon notranslate" translate="no"
-                                            title="View details">info</span>
+                                            title="View details" aria-label="View more details about this policy">info</span>
                                     </div>
                                 </td>
                                 <td>
@@ -1027,7 +1029,7 @@
                                                 translate="no" style="font-size:18px;">check_circle</span> Free primary
                                             digital access</span>
                                         <span class="material-symbols-rounded info-icon notranslate" translate="no"
-                                            title="View details">info</span>
+                                            title="View details" aria-label="Read more details about this policy promise">info</span>
                                     </div>
                                 </td>
                             </tr>
@@ -1039,7 +1041,7 @@
                                                 translate="no" style="font-size:18px;">check_circle</span> 50%
                                             Renewables by 2030</span>
                                         <span class="material-symbols-rounded info-icon notranslate" translate="no"
-                                            title="View details">info</span>
+                                            title="View details" aria-label="Read more details about this policy promise">info</span>
                                     </div>
                                 </td>
                                 <td>
@@ -1048,7 +1050,7 @@
                                                 translate="no" style="font-size:18px;">remove</span> Green jobs
                                             initiative</span>
                                         <span class="material-symbols-rounded info-icon notranslate" translate="no"
-                                            title="View details">info</span>
+                                            title="View details" aria-label="Read more details about this policy promise">info</span>
                                     </div>
                                 </td>
                                 <td>
@@ -1057,7 +1059,7 @@
                                                 translate="no" style="font-size:18px;">check_circle</span> Net-zero by
                                             2050 target</span>
                                         <span class="material-symbols-rounded info-icon notranslate" translate="no"
-                                            title="View details">info</span>
+                                            title="View details" aria-label="Read more details about this policy promise">info</span>
                                     </div>
                                 </td>
                             </tr>
@@ -1092,17 +1094,17 @@
                 </h3>
 
                 <div class="m3-radio-group" id="quiz-options">
-                    <div class="m3-radio-option" onclick="selectQuiz(this, false)">
+                    <div class="m3-radio-option" onclick="selectQuiz(this, false)" role="button" aria-label="Option: To draft laws and constitutional amendments">
                         <span class="material-symbols-rounded notranslate" translate="no"
                             style="color:var(--text-disabled)">radio_button_unchecked</span>
                         To draft laws and constitutional amendments.
                     </div>
-                    <div class="m3-radio-option" onclick="selectQuiz(this, true)">
+                    <div class="m3-radio-option" onclick="selectQuiz(this, true)" role="button" aria-label="Option: To superintend, direct, and control elections">
                         <span class="material-symbols-rounded notranslate" translate="no"
                             style="color:var(--text-disabled)">radio_button_unchecked</span>
                         To superintend, direct, and control elections.
                     </div>
-                    <div class="m3-radio-option" onclick="selectQuiz(this, false)">
+                    <div class="m3-radio-option" onclick="selectQuiz(this, false)" role="button" aria-label="Option: To audit government expenditures">
                         <span class="material-symbols-rounded notranslate" translate="no"
                             style="color:var(--text-disabled)">radio_button_unchecked</span>
                         To audit government expenditures.
@@ -1152,7 +1154,7 @@
                                 </div>
                             </div>
                             <button id="send-otp-btn" class="btn-primary"
-                                style="width:100%; justify-content:center; padding: 14px;" onclick="simulateOTP()">
+                                style="width:100%; justify-content:center; padding: 14px;" onclick="simulateOTP()" aria-label="Send secure OTP to your phone">
                                 Send Secure OTP
                             </button>
                         </div>
@@ -1210,7 +1212,7 @@
 
                         <button id="verify-kyc-btn" class="btn-primary"
                             style="width:100%; justify-content:center; padding: 14px; margin-top: 12px;"
-                            onclick="simulateKYC()">
+                            onclick="simulateKYC()" aria-label="Verify your identity documents">
                             Verify Documents
                         </button>
                         <div
@@ -1248,7 +1250,7 @@
         <!-- Platform: About -->
         <div id="view-about" class="view app-view">
             <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
-                <button class="btn-back" onclick="switchView('landing')">
+                <button class="btn-back" onclick="switchView('landing')" aria-label="Go back to the main landing page">
                     <span class="material-symbols-rounded">arrow_back</span> Back to Overview
                 </button>
             </div>
@@ -1292,7 +1294,7 @@
         <!-- Platform: Methodology -->
         <div id="view-methodology" class="view app-view">
             <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
-                <button class="btn-back" onclick="switchView('landing')">
+                <button class="btn-back" onclick="switchView('landing')" aria-label="Go back to the main landing page">
                     <span class="material-symbols-rounded">arrow_back</span> Back to Overview
                 </button>
             </div>
@@ -1331,7 +1333,7 @@
         <!-- Platform: Security -->
         <div id="view-security" class="view app-view">
             <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
-                <button class="btn-back" onclick="switchView('landing')">
+                <button class="btn-back" onclick="switchView('landing')" aria-label="Go back to the main landing page">
                     <span class="material-symbols-rounded">arrow_back</span> Back to Overview
                 </button>
             </div>
@@ -1378,7 +1380,7 @@
         <!-- Resources: ECI -->
         <div id="view-eci" class="view app-view">
             <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
-                <button class="btn-back" onclick="switchView('landing')">
+                <button class="btn-back" onclick="switchView('landing')" aria-label="Go back to the main landing page">
                     <span class="material-symbols-rounded">arrow_back</span> Back to Overview
                 </button>
             </div>
