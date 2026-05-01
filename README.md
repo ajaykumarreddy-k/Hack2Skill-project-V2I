@@ -1,5 +1,17 @@
 # 🗳️ V2I — Vote 2 India
-### The Civic Intelligence Platform for the Modern Indian Voter
+### The AI-Powered Civic Intelligence Platform for the Modern Indian Voter
+
+> [!IMPORTANT]
+> **Live Preview:** [v2i-beta.vercel.app](https://vote2india.vercel.app/)
+> *Note: Backend services are currently in Mock Mode to preserve API quotas.*
+
+````carousel
+![Premium Component Showcase](v2i_component_showcase_1777632107249.png)
+<!-- slide -->
+![EVM Tactical Feedback Simulation](media__1777615436659.png)
+<!-- slide -->
+![Policy Alignment Dashboard](media__1777615453167.png)
+````
 
 [![Hackathon](https://img.shields.io/badge/Hack--2--Skill-Top--300--Challenge-blueviolet?style=for-the-badge&logo=rocket)](https://hack2skill.com)
 [![Status](https://img.shields.io/badge/Status-Beta-orange?style=for-the-badge)](https://v2i.org.in)
