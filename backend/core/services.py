@@ -1,13 +1,15 @@
-import os
-import google.generativeai as genai
-from typing import Dict, Any, Optional
-import functools
 import asyncio
+import functools
+import os
+
+import google.generativeai as genai
+
 
 # Mocking an async LRU cache for demonstration
 def async_lru_cache(maxsize: int = 128):
     def decorator(func):
         cache = {}
+
         @functools.wraps(func)
         async def wrapper(*args, **kwargs):
             key = str(args) + str(kwargs)
@@ -20,6 +22,7 @@ def async_lru_cache(maxsize: int = 128):
             return result
         return wrapper
     return decorator
+
 
 class GeminiService:
     def __init__(self):
@@ -34,12 +37,12 @@ class GeminiService:
     async def generate_policy_summary(self, manifesto_text: str) -> str:
         if not self.model:
             return "Demo: AI summary not available without API key."
-        
+
         try:
             # Using threadpool for non-async SDK call
             loop = asyncio.get_event_loop()
             response = await loop.run_in_executor(
-                None, 
+                None,
                 lambda: self.model.generate_content(
                     f"Summarize the following political policy neutrally: {manifesto_text}"
                 )
@@ -49,14 +52,16 @@ class GeminiService:
             print(f"Gemini API Error: {e}")
             return "Error generating AI summary. Please try again later."
 
+
 class TranslationService:
     """Mock service for Google Cloud Translation API to support platform claims."""
-    
+
     @staticmethod
     async def translate_text(text: str, target_lang: str) -> str:
         # In a real scenario, this would call the Google Cloud Translation API
         # For the hackathon, we show the architectural readiness
         return f"[Translated to {target_lang}]: {text}"
+
 
 # Singleton instances
 gemini_service = GeminiService()

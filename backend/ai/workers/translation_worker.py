@@ -1,15 +1,17 @@
-from openai import AsyncOpenAI
 import json
 import os
+
 import asyncpg
 import redis.asyncio as redis
 from dotenv import load_dotenv
+from openai import AsyncOpenAI
 
 load_dotenv()
 
 client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-SUPPORTED_LANGS = ['hi','bn','te','mr','ta','gu','kn','ml','pa','or','ur']
+SUPPORTED_LANGS = ['hi', 'bn', 'te', 'mr', 'ta', 'gu', 'kn', 'ml', 'pa', 'or', 'ur']
+
 
 async def translate_policy(policy_id: str, lang: str):
     if lang not in SUPPORTED_LANGS:
@@ -17,7 +19,7 @@ async def translate_policy(policy_id: str, lang: str):
 
     cache_key = f'trans:{policy_id}:{lang}'
     r = redis.from_url(os.getenv("REDIS_URL"), decode_responses=True)
-    
+
     cached = await r.get(cache_key)
     if cached:
         await r.aclose()
@@ -29,13 +31,19 @@ async def translate_policy(policy_id: str, lang: str):
         if not policy:
             return None
 
+        prompt = (
+            f'Translate to {lang} (keep political terms accurate): '
+            f'title: {policy["title"]}; stance: {policy["stance"]}. '
+            'Return JSON with "title" and "stance" fields.'
+        )
+
         resp = await client.chat.completions.create(
             model='gpt-4o',
             messages=[{
                 'role': 'user',
-                'content': f'Translate to {lang} (keep political terms accurate): title: {policy["title"]}; stance: {policy["stance"]}. Return JSON with "title" and "stance" fields.'
+                'content': prompt
             }],
-            response_format={'type':'json_object'}
+            response_format={'type': 'json_object'}
         )
         result = json.loads(resp.choices[0].message.content)
 
@@ -43,7 +51,7 @@ async def translate_policy(policy_id: str, lang: str):
         await r.set(cache_key, json.dumps(result), ex=3600)
         await conn.execute(
             '''INSERT INTO translations (entity_type, entity_id, lang_code, field, value)
-               VALUES ($1, $2, $3, $4, $5) 
+               VALUES ($1, $2, $3, $4, $5)
                ON CONFLICT (entity_type, entity_id, lang_code, field) DO UPDATE SET value=$5''',
             'policy', policy_id, lang, 'stance', result['stance']
         )

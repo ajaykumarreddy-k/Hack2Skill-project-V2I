@@ -1,10 +1,13 @@
-from fastapi import APIRouter, Query, Depends
-from typing import Optional, List, Dict, Any
-from ..db import get_db
-from ..cache import get_cache
 import json
+from typing import Any, Dict, List, Optional
+
+from fastapi import APIRouter, Depends, Query
+
+from ..cache import get_cache
+from ..db import get_db
 
 router = APIRouter(prefix='/api/v1')
+
 
 @router.get('/policies/compare')
 async def compare_policies(
@@ -34,7 +37,7 @@ async def compare_policies(
     '''
 
     rows = await db.fetch(query, lang, category, party_ids)
-    
+
     # Simple matrix builder
     matrix = {}
     for row in rows:
@@ -46,10 +49,11 @@ async def compare_policies(
             "abbreviation": row['abbreviation'],
             "stance": row['localized_stance']
         })
-    
+
     result = {"matrix": matrix}
     await cache.set(cache_key, json.dumps(result), ex=3600)
     return result
+
 
 @router.post('/alignment/score')
 async def compute_alignment(responses: Dict[str, Any], db=Depends(get_db)):
@@ -75,4 +79,7 @@ async def compute_alignment(responses: Dict[str, Any], db=Depends(get_db)):
         denominator = sum(weights.values()) if weights.values() else 1.0
         scores[party['abbreviation']] = round((numerator / denominator) * 100, 1)
 
-    return { 'scores': scores, 'top_match': max(scores, key=scores.get) if scores else None }
+    return {
+        'scores': scores,
+        'top_match': max(scores, key=scores.get) if scores else None
+    }

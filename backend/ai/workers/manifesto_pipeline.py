@@ -1,11 +1,12 @@
-from langchain_community.document_loaders import PyMuPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from openai import AsyncOpenAI
-from urllib.parse import urlparse
 import json
 import os
+from urllib.parse import urlparse
+
 import asyncpg
 from dotenv import load_dotenv
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import PyMuPDFLoader
+from openai import AsyncOpenAI
 
 load_dotenv()
 
@@ -17,6 +18,7 @@ client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 TRUSTED_BUCKET = os.getenv("STORAGE_BUCKET", "v2i-manifestos")
 ALLOWED_SCHEMES = {"gs", "https"}
 
+
 def validate_manifest_url(url: str) -> bool:
     parsed = urlparse(url)
     if parsed.scheme not in ALLOWED_SCHEMES:
@@ -26,6 +28,7 @@ def validate_manifest_url(url: str) -> bool:
         return False
     return True
 
+
 CLASSIFY_PROMPT = '''
 Analyze this excerpt from an Indian political manifesto.
 Return JSON: {{ "category": one of [economy|healthcare|education|environment|governance|agriculture|defense],
@@ -34,6 +37,7 @@ Return JSON: {{ "category": one of [economy|healthcare|education|environment|gov
   "confidence": float 0.0-1.0 }}
 Excerpt: {text}
 '''
+
 
 async def process_manifesto(gcs_url: str, party_id: str):
     # VULN-FIX: Validate URL before passing to file loader (SSRF guard)
@@ -50,28 +54,31 @@ async def process_manifesto(gcs_url: str, party_id: str):
     for chunk in chunks:
         resp = await client.chat.completions.create(
             model='gpt-4o',
-            messages=[{'role':'user','content':CLASSIFY_PROMPT.format(text=chunk.page_content)}],
-            response_format={'type':'json_object'}
+            messages=[{'role': 'user', 'content': CLASSIFY_PROMPT.format(text=chunk.page_content)}],
+            response_format={'type': 'json_object'}
         )
         data = json.loads(resp.choices[0].message.content)
         if data['confidence'] > 0.7:  # Only store high-confidence extractions
-            results.append({ 'party_id': party_id, **data })
+            results.append({'party_id': party_id, **data})
 
     await upsert_policies(results)  # Deduplicate by category
-    return { 'processed_chunks': len(chunks), 'stored_policies': len(results) }
+    return {'processed_chunks': len(chunks), 'stored_policies': len(results)}
+
 
 async def upsert_policies(policies):
     conn = await asyncpg.connect(os.getenv("DATABASE_URL"))
     try:
         for p in policies:
             await conn.execute(
-                '''INSERT INTO policies (party_id, category, title, stance, stance_score, confidence_score)
+                '''INSERT INTO policies (party_id, category, title, stance, stance_score,
+                   confidence_score)
                    VALUES ($1, $2, $3, $4, $5, $6)
-                   ON CONFLICT (party_id, category) DO UPDATE SET 
-                   stance = EXCLUDED.stance, 
+                   ON CONFLICT (party_id, category) DO UPDATE SET
+                   stance = EXCLUDED.stance,
                    stance_score = EXCLUDED.stance_score,
                    confidence_score = EXCLUDED.confidence_score''',
-                p['party_id'], p['category'], p['category'].capitalize(), p['stance'], p['stance_score'], p['confidence']
+                p['party_id'], p['category'], p['category'].capitalize(),
+                p['stance'], p['stance_score'], p['confidence']
             )
     finally:
         await conn.close()
