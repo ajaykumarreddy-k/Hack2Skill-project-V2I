@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="V2I — AI-powered civic intelligence platform for Indian voters. Compare manifestos, decode policies, and find your alignment across 12+ languages.">
+    <title>V2I — Vote 2 India</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗳️</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400;500;700&family=Google+Sans:wght@300;400;500;600;700&family=Roboto+Flex:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+    <!-- Hidden Google Translate Element -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi,bn,te,mr,ta,gu,kn,ml,pa,or,ur',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="main-nav">
+        <a class="nav-logo notranslate" translate="no" onclick="switchView('landing')">
+            <div class="g-logo-icon">
+                <span class="material-symbols-rounded notranslate" translate="no">how_to_vote</span>
+            </div>
+            V2I
+        </a>
+        <div class="nav-links">
+            <a class="nav-link active" onclick="switchView('landing')">Overview</a>
+            <a class="nav-link" onclick="switchView('dashboard')">Dashboard</a>
+            <a class="nav-link" onclick="switchView('comparison')">Compare</a>
+            <a class="nav-link" onclick="switchView('quiz')">Quiz</a>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:16px;">
+            <!-- Language Selector -->
+            <div class="nav-lang-selector">
+                <button class="nav-lang-btn" onclick="toggleLangMenu()">
+                    <span class="material-symbols-rounded notranslate" translate="no"
+                        style="font-size:18px;">translate</span>
+                    <span id="current-lang-label" class="notranslate" translate="no">EN</span>
+                    <span class="material-symbols-rounded notranslate" translate="no"
+                        style="font-size:18px;">expand_more</span>
+                </button>
+                <div id="lang-menu" class="lang-dropdown">
+                    <a href="#" class="lang-option active notranslate" translate="no"
+                        onclick="changeLanguage('en', 'EN', event)">English (EN)</a>
+                    <a href="#" class="lang-option notranslate" translate="no"
+                        onclick="changeLanguage('hi', 'HI', event)">हिन्दी (HI)</a>
+                    <a href="#" class="lang-option notranslate" translate="no"
+                        onclick="changeLanguage('bn', 'BN', event)">বাংলা (BN)</a>
+                    <a href="#" class="lang-option notranslate" translate="no"
+                        onclick="changeLanguage('te', 'TE', event)">తెలుగు (TE)</a>
+                    <a href="#" class="lang-option notranslate" translate="no"
+                        onclick="changeLanguage('mr', 'MR', event)">मराठी (MR)</a>
+                    <a href="#" class="lang-option notranslate" translate="no"
+                        onclick="changeLanguage('ta', 'TA', event)">தமிழ் (TA)</a>
+                    <a href="#" class="lang-option notranslate" translate="no"
+                        onclick="changeLanguage('gu', 'GU', event)">ગુજરાતી (GU)</a>
+                    <a href="#" class="lang-option notranslate" translate="no"
+                        onclick="changeLanguage('kn', 'KN', event)">ಕನ್ನಡ (KN)</a>
+                    <a href="#" class="lang-option notranslate" translate="no"
+                        onclick="changeLanguage('ml', 'ML', event)">മലയാളം (ML)</a>
+                    <a href="#" class="lang-option notranslate" translate="no"
+                        onclick="changeLanguage('pa', 'PA', event)">ਪੰਜਾਬੀ (PA)</a>
+                    <a href="#" class="lang-option notranslate" translate="no"
+                        onclick="changeLanguage('or', 'OR', event)">ଓଡ଼ିଆ (OR)</a>
+                    <a href="#" class="lang-option notranslate" translate="no"
+                        onclick="changeLanguage('ur', 'UR', event)">اردو (UR)</a>
+                </div>
+            </div>
+
+            <!-- Secure Login Button -->
+            <button id="nav-login-btn" class="btn-secure-login" onclick="switchView('login')">
+                <span class="material-symbols-rounded notranslate" translate="no"
+                    style="font-size:20px;">lock_person</span>
+                <span class="notranslate" translate="no">Secure Login</span>
+            </button>
+        </div>
+    </nav>
+
+    <main id="app">
+
+        <!-- ================= LANDING VIEW ================= -->
+        <div id="view-landing" class="view">
+
+            <!-- HERO -->
+            <section class="hero">
+                <div class="hero-bg"></div>
+                <div class="hero-inner">
+                    <!-- LEFT -->
+                    <div>
+                        <div class="eyebrow fade-up">
+                            <span class="material-symbols-rounded eyebrow-icon notranslate"
+                                translate="no">neurology</span>
+                            AI-Powered Civic Insights
+                        </div>
+                        <h1 class="hero-title fade-up delay-1">
+                            Make every vote count.<br>
+                            <strong>With <span class="g-text-gradient">Clarity.</span></strong>
+                        </h1>
+                        <p class="hero-desc fade-up delay-2">
+                            Compare political manifestos, decode complex policies, and discover the candidates who
+                            genuinely align with your values — analyzed neutrally by AI.
+                        </p>
+                        <div class="hero-btns fade-up delay-1">
+                            <button class="btn-primary" onclick="switchView('dashboard')">
+                                Get Started
+                            </button>
+                            <button class="btn-secondary" onclick="switchView('comparison')">
+                                <span class="material-symbols-rounded notranslate" translate="no"
+                                    style="font-size:20px;">table_chart</span>
+                                View Matrix
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT -->
+                    <div class="hero-visual fade-up delay-2">
+                        <div class="m3-card">
+                            <div class="m3-card-header">
+                                <div class="m3-title">
+                                    <span class="material-symbols-rounded notranslate" translate="no"
+                                        style="color:var(--g-blue)">analytics</span>
+                                    Alignment Report
+                                </div>
+                                <div class="m3-badge">
+                                    <span class="material-symbols-rounded notranslate" translate="no"
+                                        style="font-size:16px;">verified</span>
+                                    Ready
+                                </div>
+                            </div>
+
+                            <div class="m3-list-item highlight">
+                                <div class="m3-avatar notranslate" translate="no"
+                                    style="background:var(--surface);color:var(--g-blue)">NU</div>
+                                <div class="m3-info">
+                                    <div class="m3-name">National Unity</div>
+                                    <div class="m3-sub">Strong match: Economy</div>
+                                </div>
+                                <div class="m3-score notranslate" translate="no" style="color:var(--g-blue)">84%</div>
+                            </div>
+
+                            <div class="m3-list-item">
+                                <div class="m3-avatar notranslate" translate="no"
+                                    style="background:var(--g-yellow-light);color:#d97706">PA</div>
+                                <div class="m3-info">
+                                    <div class="m3-name">Prog. Alliance</div>
+                                    <div class="m3-sub">Matches: Healthcare</div>
+                                </div>
+                                <div class="m3-score notranslate" translate="no" style="color:#d97706">72%</div>
+                            </div>
+
+                            <div class="m3-list-item" style="margin-bottom:0;">
+                                <div class="m3-avatar notranslate" translate="no"
+                                    style="background:var(--bg-secondary);color:var(--text-secondary)">CA</div>
+                                <div class="m3-info">
+                                    <div class="m3-name">Civic Action</div>
+                                    <div class="m3-sub">Matches: Governance</div>
+                                </div>
+                                <div class="m3-score notranslate" translate="no" style="color:var(--text-secondary)">61%
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="float-chip fc-1">
+                            <span class="material-symbols-rounded notranslate" translate="no">translate</span>
+                            12 Languages
+                        </div>
+                        <div class="float-chip fc-2">
+                            <span class="material-symbols-rounded notranslate" translate="no">shield_lock</span>
+                            Private & Secure
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MARQUEE -->
+            <div class="marquee-section">
+                <div class="marquee-inner">
+                    <span class="lang-item highlight notranslate" translate="no">English</span>
+                    <span class="lang-item notranslate" translate="no">हिन्दी</span>
+                    <span class="lang-item highlight notranslate" translate="no">বাংলা</span>
+                    <span class="lang-item notranslate" translate="no">తెలుగు</span>
+                    <span class="lang-item highlight notranslate" translate="no">मराठी</span>
+                    <span class="lang-item notranslate" translate="no">தமிழ்</span>
+                    <span class="lang-item highlight notranslate" translate="no">ગુજરાતી</span>
+                    <span class="lang-item notranslate" translate="no">ಕನ್ನಡ</span>
+                    <span class="lang-item highlight notranslate" translate="no">മലയാളം</span>
+                    <span class="lang-item notranslate" translate="no">ਪੰਜਾਬੀ</span>
+                    <span class="lang-item highlight notranslate" translate="no">English</span>
+                    <span class="lang-item notranslate" translate="no">हिन्दी</span>
+                    <span class="lang-item highlight notranslate" translate="no">বাংলা</span>
+                    <span class="lang-item notranslate" translate="no">తెలుగు</span>
+                    <span class="lang-item highlight notranslate" translate="no">मराठी</span>
+                    <span class="lang-item notranslate" translate="no">தமிழ்</span>
+                    <span class="lang-item highlight notranslate" translate="no">ગુજરાતી</span>
+                    <span class="lang-item notranslate" translate="no">ಕನ್ನಡ</span>
+                </div>
+            </div>
+
+            <!-- HOW IT WORKS -->
+            <section class="section">
+                <div class="section-inner">
+                    <div class="section-header fade-up">
+                        <h2 class="section-title">A smarter way to participate</h2>
+                        <p class="section-desc">We synthesize thousands of pages of political documents into clear,
+                            comparable insights, empowering your democratic right.</p>
+                    </div>
+
+                    <div class="m3-grid">
+                        <div class="m3-feature-card fade-up">
+                            <div class="m3-icon-box" style="background:var(--g-blue-light);color:var(--g-blue);">
+                                <span class="material-symbols-rounded notranslate" translate="no"
+                                    style="font-size:28px">auto_awesome</span>
+                            </div>
+                            <h3 class="m3-feature-title">AI Summarization</h3>
+                            <p class="m3-feature-desc">Complex jargon and 100-page manifestos are distilled into
+                                unbiased, plain-language summaries you can read in minutes.</p>
+                        </div>
+
+                        <div class="m3-feature-card fade-up delay-1">
+                            <div class="m3-icon-box" style="background:var(--g-green-light);color:var(--g-green);">
+                                <span class="material-symbols-rounded notranslate" translate="no"
+                                    style="font-size:28px">compare_arrows</span>
+                            </div>
+                            <h3 class="m3-feature-title">Side-by-Side Matrix</h3>
+                            <p class="m3-feature-desc">Directly compare stances on key issues like Healthcare, Economy,
+                                and Education across all major national and regional parties.</p>
+                        </div>
+
+                        <div class="m3-feature-card fade-up delay-2">
+                            <div class="m3-icon-box" style="background:var(--g-yellow-light);color:#d97706;">
+                                <span class="material-symbols-rounded notranslate" translate="no"
+                                    style="font-size:28px">fact_check</span>
+                            </div>
+                            <h3 class="m3-feature-title">Values Alignment</h3>
+                            <p class="m3-feature-desc">Take a brief, secure questionnaire to see mathematically which
+                                parties actually align with your personal policy preferences.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PARTIES -->
+            <section class="section parties-section">
+                <div class="section-inner">
+                    <div class="section-header fade-up"
+                        style="text-align:left; display:flex; justify-content:space-between; align-items:flex-end;">
+                        <div>
+                            <h2 class="section-title" style="margin-bottom:0;">Explore Profiles</h2>
+                        </div>
+                        <button class="m3-btn-text" onclick="switchView('comparison')">
+                            View All <span class="material-symbols-rounded notranslate" translate="no"
+                                style="font-size:20px;">arrow_forward</span>
+                        </button>
+                    </div>
+
+                    <div class="m3-grid">
+                        <!-- Card 1 -->
+                        <div class="m3-party-card fade-up" onclick="switchView('comparison')">
+                            <div class="m3-party-head">
+                                <div class="m3-party-logo notranslate" translate="no"
+                                    style="background:var(--g-blue-light);color:var(--g-blue)">NU</div>
+                                <div>
+                                    <div class="m3-party-name">National Unity</div>
+                                    <div class="m3-party-meta">National Party</div>
+                                </div>
+                            </div>
+                            <div class="m3-tags">
+                                <span class="m3-tag">Economy</span>
+                                <span class="m3-tag">Infrastructure</span>
+                                <span class="m3-tag">Defense</span>
+                            </div>
+                            <p class="m3-party-desc">Focuses on rapid infrastructure development, FDI boosts, and
+                                streamlined corporate taxation to drive 8% GDP growth.</p>
+                            <div class="m3-party-footer">
+                                <span style="color:var(--text-disabled);font-size:0.875rem;">42 policies</span>
+                                <span class="material-symbols-rounded notranslate" translate="no"
+                                    style="color:var(--g-blue)">arrow_forward</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="m3-party-card fade-up delay-1" onclick="switchView('comparison')">
+                            <div class="m3-party-head">
+                                <div class="m3-party-logo notranslate" translate="no"
+                                    style="background:var(--g-green-light);color:var(--g-green)">PA</div>
+                                <div>
+                                    <div class="m3-party-name">Progressive Alliance</div>
+                                    <div class="m3-party-meta">National Party</div>
+                                </div>
+                            </div>
+                            <div class="m3-tags">
+                                <span class="m3-tag">Healthcare</span>
+                                <span class="m3-tag">Education</span>
+                                <span class="m3-tag">Rural</span>
+                            </div>
+                            <p class="m3-party-desc">Prioritizes universal healthcare legislation, rural employment
+                                guarantees, and increased budgetary allocation for education.</p>
+                            <div class="m3-party-footer">
+                                <span style="color:var(--text-disabled);font-size:0.875rem;">38 policies</span>
+                                <span class="material-symbols-rounded notranslate" translate="no"
+                                    style="color:var(--g-blue)">arrow_forward</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="m3-party-card fade-up delay-2" onclick="switchView('comparison')">
+                            <div class="m3-party-head">
+                                <div class="m3-party-logo notranslate" translate="no"
+                                    style="background:var(--bg-secondary);color:var(--text-secondary)">CA</div>
+                                <div>
+                                    <div class="m3-party-name">Civic Action</div>
+                                    <div class="m3-party-meta">Regional Coalition</div>
+                                </div>
+                            </div>
+                            <div class="m3-tags">
+                                <span class="m3-tag">Governance</span>
+                                <span class="m3-tag">Transparency</span>
+                                <span class="m3-tag">Urban</span>
+                            </div>
+                            <p class="m3-party-desc">Advocates for extreme transparency through open-data governance
+                                boards, digitizing public services, and urban reform.</p>
+                            <div class="m3-party-footer">
+                                <span style="color:var(--text-disabled);font-size:0.875rem;">29 policies</span>
+                                <span class="material-symbols-rounded notranslate" translate="no"
+                                    style="color:var(--g-blue)">arrow_forward</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TRUST -->
+            <section class="trust-section fade-up">
+                <div class="section-header" style="margin-bottom:3rem;">
+                    <h2 class="section-title">Built on Trust</h2>
+                    <p class="section-desc" style="font-size:1.125rem;">Our commitment to neutral, secure, and
+                        accessible information.</p>
+                </div>
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <span class="material-symbols-rounded trust-icon notranslate" translate="no">encrypted</span>
+                        <div class="trust-content">
+                            <h3>Absolute Privacy</h3>
+                            <p>Zero personal data is stored on our servers. Your preferences stay exclusively on your
+                                device via local storage.</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <span class="material-symbols-rounded trust-icon notranslate" translate="no">balance</span>
+                        <div class="trust-content">
+                            <h3>Strictly Neutral</h3>
+                            <p>Our algorithms are open-source and independently audited. No political sponsorship. No
+                                bias.</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <span class="material-symbols-rounded trust-icon notranslate" translate="no">gavel</span>
+                        <div class="trust-content">
+                            <h3>Official Sources</h3>
+                            <p>All data is sourced directly from ECI documents and public manifestos, clearly cited for
+                                verification.</p>
+                        </div>
+                    </div>
+                    <div class="trust-item">
+                        <span class="material-symbols-rounded trust-icon notranslate" translate="no">code</span>
+                        <div class="trust-content">
+                            <h3>Open Source</h3>
+                            <p>The platform is open on GitHub. Review the code, fork it, and contribute. Democracy
+                                benefits from oversight.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= NEW COOL FOOTER ================= -->
+            <footer class="footer-cool">
+                <!-- SVG Defs for Smileys -->
+                <svg style="display:none;" aria-hidden="true">
+                    <defs>
+                        <!-- Standard Smile -->
+                        <g id="sm-1">
+                            <circle cx="50" cy="50" r="46" fill="#000" stroke="#fff" stroke-width="4" />
+                            <circle cx="35" cy="40" r="5" fill="#fff" />
+                            <circle cx="65" cy="40" r="5" fill="#fff" />
+                            <path d="M 30 65 Q 50 85 70 65" fill="none" stroke="#fff" stroke-width="5"
+                                stroke-linecap="round" />
+                        </g>
+                        <!-- Open Mouth Smile -->
+                        <g id="sm-2">
+                            <circle cx="50" cy="50" r="46" fill="#000" stroke="#fff" stroke-width="4" />
+                            <circle cx="35" cy="40" r="5" fill="#fff" />
+                            <circle cx="65" cy="40" r="5" fill="#fff" />
+                            <path d="M 25 60 Q 50 85 75 60 Z" fill="#fff" stroke="#fff" stroke-width="3"
+                                stroke-linejoin="round" />
+                        </g>
+                        <!-- Wink Smile -->
+                        <g id="sm-3">
+                            <circle cx="50" cy="50" r="46" fill="#000" stroke="#fff" stroke-width="4" />
+                            <path d="M 28 42 Q 35 34 42 42" fill="none" stroke="#fff" stroke-width="5"
+                                stroke-linecap="round" />
+                            <circle cx="65" cy="40" r="5" fill="#fff" />
+                            <path d="M 30 65 Q 50 85 70 65" fill="none" stroke="#fff" stroke-width="5"
+                                stroke-linecap="round" />
+                        </g>
+                    </defs>
+                </svg>
+
+                <!-- Smiley Cluster Background -->
+                <div class="smileys-bg">
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:120px; left:-2%; bottom:-10px; transform:rotate(-15deg)">
+                        <use href="#sm-1"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:80px; left:4%; bottom:50px; transform:rotate(25deg)">
+                        <use href="#sm-2"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:100px; left:9%; bottom:-30px; transform:rotate(5deg)">
+                        <use href="#sm-3"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:140px; left:16%; bottom:20px; transform:rotate(-20deg)">
+                        <use href="#sm-1"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:160px; left:22%; bottom:-20px; transform:rotate(12deg)">
+                        <use href="#sm-2"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:90px; left:28%; bottom:70px; transform:rotate(40deg)">
+                        <use href="#sm-1"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:180px; left:33%; bottom:-40px; transform:rotate(-8deg)">
+                        <use href="#sm-1"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:110px; left:40%; bottom:30px; transform:rotate(35deg)">
+                        <use href="#sm-3"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:130px; left:45%; bottom:-10px; transform:rotate(18deg)">
+                        <use href="#sm-1"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:200px; left:52%; bottom:-50px; transform:rotate(-5deg)">
+                        <use href="#sm-2"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:90px; left:58%; bottom:60px; transform:rotate(-25deg)">
+                        <use href="#sm-1"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:150px; left:64%; bottom:-20px; transform:rotate(15deg)">
+                        <use href="#sm-3"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:80px; left:71%; bottom:80px; transform:rotate(-15deg)">
+                        <use href="#sm-2"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:170px; left:76%; bottom:-30px; transform:rotate(22deg)">
+                        <use href="#sm-1"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:120px; left:84%; bottom:20px; transform:rotate(-30deg)">
+                        <use href="#sm-2"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:220px; left:90%; bottom:-60px; transform:rotate(10deg)">
+                        <use href="#sm-1"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:100px; left:96%; bottom:40px; transform:rotate(-12deg)">
+                        <use href="#sm-3"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:70px; left:13%; bottom:-5px; transform:rotate(-35deg)">
+                        <use href="#sm-2"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:110px; left:48%; bottom:10px; transform:rotate(15deg)">
+                        <use href="#sm-3"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:80px; left:62%; bottom:-10px; transform:rotate(-45deg)">
+                        <use href="#sm-1"></use>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="sm-icon"
+                        style="width:140px; left:82%; bottom:-20px; transform:rotate(5deg)">
+                        <use href="#sm-2"></use>
+                    </svg>
+                </div>
+
+                <!-- Foreground Content -->
+                <div class="footer-cool-content">
+                    <h2 class="footer-headline fade-up">
+                        Let's build<br>
+                        <span class="indent">something cool ✌️</span>
+                    </h2>
+
+                    <!-- Floating Contact Box -->
+                    <div class="glass-contact fade-up delay-1" style="margin-bottom: 4rem;">
+                        <p>Or get in touch here</p>
+                        <div class="social-pills-container">
+                            <a href="https://www.linkedin.com/in/ajay-kumar-reddy-krishnareddy-gari-a4885b282/" target="_blank" rel="noopener noreferrer" class="social-pill-new">linkedin &#8599;</a>
+                            <a href="https://github.com/ajaykumarreddy-k" target="_blank" rel="noopener noreferrer" class="social-pill-new">github &#8599;</a>
+                            <a href="mailto:ajaykumarreddykrishnareddygari@gmail.com" class="social-pill-new">contact &#8599;</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Standard Footer Content -->
+            <footer class="footer-standard">
+                <div class="footer-inner">
+                    <div class="footer-top">
+                        <div class="footer-brand">
+                            <div class="g-logo-icon">
+                                <span class="material-symbols-rounded notranslate" translate="no">how_to_vote</span>
+                            </div>
+                            <p>Empowering voters across India with clear, unbiased, and accessible policy information.
+                            </p>
+                        </div>
+                        <div class="footer-links">
+                            <div class="footer-col">
+                                <h4>Platform</h4>
+                                <a href="javascript:void(0)" onclick="switchView('about')">About V2I</a>
+                                <a href="javascript:void(0)" onclick="switchView('methodology')">Methodology</a>
+                                <a href="javascript:void(0)" onclick="switchView('security')">Security</a>
+                            </div>
+                            <div class="footer-col">
+                                <h4>Resources</h4>
+                                <a href="javascript:void(0)" onclick="switchView('eci')">ECI Guidelines</a>
+                                <a href="javascript:void(0)" onclick="switchView('languages')">Language Packs</a>
+                                <a href="javascript:void(0)" onclick="switchView('api')">API Documentation</a>
+                            </div>
+                            <div class="footer-col">
+                                <h4>Legal</h4>
+                                <a href="javascript:void(0)" onclick="switchView('privacy')">Privacy Policy</a>
+                                <a href="javascript:void(0)" onclick="switchView('tos')">Terms of Service</a>
+                                <a href="javascript:void(0)" onclick="switchView('license')">Open Source License</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <span>© 2026 V2I Initiative. Not affiliated with any government entity.</span>
+                        <button class="to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                            <span class="material-symbols-rounded notranslate" translate="no"
+                                style="font-size:18px; margin-right: 4px;">arrow_upward</span> Back to top
+                        </button>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ================= DASHBOARD VIEW ================= -->
+        <div id="view-dashboard" class="view app-view">
+            <div class="app-header">
+                <h1 class="app-title">Dashboard</h1>
+                <p class="app-subtitle">Your personalized civic hub.</p>
+            </div>
+
+            <!-- Top Overview Banner -->
+            <div class="m3-container"
+                style="display:flex; gap:2rem; align-items:center; flex-wrap: wrap; margin-bottom: 24px;">
+                <div style="flex:1; min-width: 300px;">
+                    <h2
+                        style="font-family:'Google Sans',sans-serif; font-weight:500; font-size:1.5rem; margin-bottom:12px;">
+                        Welcome back, Citizen</h2>
+                    <p style="color:var(--text-secondary); line-height:1.6; margin-bottom:24px;">
+                        Your alignment profile is currently incomplete. Take the civic priorities quiz to discover which
+                        parties truly match your values, or practice using our simulated voting booth below.
+                    </p>
+                    <div style="display:flex; gap:16px; flex-wrap: wrap;">
+                        <button class="btn-primary" onclick="switchView('quiz')">
+                            <span class="material-symbols-rounded notranslate" translate="no"
+                                style="font-size:20px;">psychology</span>
+                            Take Questionnaire
+                        </button>
+                        <button class="btn-secondary" onclick="switchView('comparison')">
+                            <span class="material-symbols-rounded notranslate" translate="no"
+                                style="font-size:20px;">table_chart</span>
+                            View Matrix
+                        </button>
+                    </div>
+                </div>
+                <div
+                    style="width:140px; height:140px; border-radius:50%; border:8px solid var(--border-color); display:flex; flex-direction:column; align-items:center; justify-content:center; position: relative;">
+                    <span class="notranslate" translate="no"
+                        style="font-family:'Google Sans Display',sans-serif; font-size:2rem; font-weight:500; color:var(--text-primary);">0%</span>
+                    <span
+                        style="font-size:0.75rem; color:var(--text-disabled); text-transform:uppercase; font-weight:500; letter-spacing:0.05em;">Aligned</span>
+                    <!-- Partial progress SVG trick -->
+                    <svg style="position:absolute; top:-8px; left:-8px; width:140px; height:140px; transform:rotate(-90deg);"
+                        viewBox="0 0 140 140">
+                        <circle cx="70" cy="70" r="66" fill="none" stroke="var(--g-blue)" stroke-width="8"
+                            stroke-dasharray="414" stroke-dashoffset="414" stroke-linecap="round"></circle>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Dashboard Features Grid -->
+            <div class="dashboard-grid">
+                <!-- Main Column (Voting & Policies) -->
+                <div style="display:flex; flex-direction:column; gap:24px;">
+
+                    <!-- Trial Voting Booth -->
+                    <div class="m3-card-inner">
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 20px;">
+                            <div>
+                                <h3
+                                    style="font-family:'Google Sans', sans-serif; font-size:1.25rem; font-weight:500; color:var(--text-primary); display:flex; align-items:center; gap:8px;">
+                                    <span class="material-symbols-rounded notranslate" translate="no"
+                                        style="color:var(--g-blue);">touch_app</span>
+                                    Trial Voting Simulator
+                                </h3>
+                                <p style="color:var(--text-secondary); font-size:0.9375rem; margin-top:4px;">Practice
+                                    the EVM experience locally. Designed to resemble an official Indian Electronic
+                                    Voting Machine (Ballot Unit).</p>
+                            </div>
+                            <span class="m3-badge" style="background:var(--g-blue-light); color:var(--g-blue);"><span
+                                    class="material-symbols-rounded notranslate" translate="no"
+                                    style="font-size:14px;">science</span> Beta</span>
+                        </div>
+
+                        <div class="voting-booth" id="evm-container">
+                            <!-- Realistic EVM Machine -->
+                            <div class="indian-evm-unit" id="evm-machine">
+                                <!-- Top Panel -->
+                                <div class="evm-top-panel">
+                                    <span class="evm-label">Ballot Unit</span>
+                                    <div style="display:flex; align-items:center; gap:6px;">
+                                        <span class="notranslate" translate="no"
+                                            style="font-size:0.65rem; font-weight:700; color:#4caf50;">READY</span>
+                                        <div class="evm-ready-light" id="evm-ready-indicator"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Candidate Row 1 -->
+                                <div class="evm-row">
+                                    <div class="evm-sno notranslate" translate="no">1</div>
+                                    <div class="evm-party-info">
+                                        <div class="m3-avatar notranslate" translate="no"
+                                            style="background:var(--g-blue-light);color:var(--g-blue);width:32px;height:32px;font-size:0.75rem;">
+                                            NU</div>
+                                        <div>
+                                            <div class="evm-party-name">National Unity</div>
+                                            <div class="evm-candidate">Candidate A</div>
+                                        </div>
+                                    </div>
+                                    <div class="evm-led"></div>
+                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)"></button>
+                                </div>
+
+                                <!-- Candidate Row 2 -->
+                                <div class="evm-row">
+                                    <div class="evm-sno notranslate" translate="no">2</div>
+                                    <div class="evm-party-info">
+                                        <div class="m3-avatar notranslate" translate="no"
+                                            style="background:var(--g-green-light);color:var(--g-green);width:32px;height:32px;font-size:0.75rem;">
+                                            PA</div>
+                                        <div>
+                                            <div class="evm-party-name">Prog. Alliance</div>
+                                            <div class="evm-candidate">Candidate B</div>
+                                        </div>
+                                    </div>
+                                    <div class="evm-led"></div>
+                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)"></button>
+                                </div>
+
+                                <!-- Candidate Row 3 -->
+                                <div class="evm-row">
+                                    <div class="evm-sno notranslate" translate="no">3</div>
+                                    <div class="evm-party-info">
+                                        <div class="m3-avatar notranslate" translate="no"
+                                            style="background:var(--bg-secondary);color:var(--text-secondary);width:32px;height:32px;font-size:0.75rem;">
+                                            CA</div>
+                                        <div>
+                                            <div class="evm-party-name">Civic Action</div>
+                                            <div class="evm-candidate">Candidate C</div>
+                                        </div>
+                                    </div>
+                                    <div class="evm-led"></div>
+                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)"></button>
+                                </div>
+
+                                <!-- NOTA -->
+                                <div class="evm-row" style="margin-top: 12px; border-top: 2px dashed #90a4ae;">
+                                    <div class="evm-sno notranslate" translate="no">16</div>
+                                    <div class="evm-party-info">
+                                        <div class="m3-avatar notranslate" translate="no"
+                                            style="background:var(--surface);border:1px solid var(--border-color);color:var(--text-primary);width:32px;height:32px;font-size:0.75rem;">
+                                            NOTA</div>
+                                        <div>
+                                            <div class="evm-party-name notranslate" translate="no">NOTA</div>
+                                            <div class="evm-candidate">None of the above</div>
+                                        </div>
+                                    </div>
+                                    <div class="evm-led"></div>
+                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Watchlist / Saved Policies -->
+                    <div class="m3-card-inner">
+                        <h3
+                            style="font-family:'Google Sans', sans-serif; font-size:1.25rem; font-weight:500; color:var(--text-primary); margin-bottom: 20px; display:flex; align-items:center; gap:8px;">
+                            <span class="material-symbols-rounded notranslate" translate="no"
+                                style="color:var(--g-yellow);">bookmark</span>
+                            Saved Policies
+                        </h3>
+                        <div
+                            style="padding: 32px; text-align:center; background:var(--bg-secondary); border-radius:16px;">
+                            <span class="material-symbols-rounded notranslate" translate="no"
+                                style="font-size:48px; color:var(--text-disabled); margin-bottom:12px;">bookmark_border</span>
+                            <p style="color:var(--text-secondary); font-size:0.9375rem;">You haven't saved any policies
+                                yet.<br>Explore the Compare Matrix to bookmark key issues.</p>
+                            <button class="m3-btn-text" style="margin: 16px auto 0;"
+                                onclick="switchView('comparison')">Explore Policies &rarr;</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Side Column (Countdown & Activity) -->
+                <div style="display:flex; flex-direction:column; gap:24px;">
+
+                    <!-- Election Countdown -->
+                    <div class="countdown-widget">
+                        <div
+                            style="display:flex; align-items:center; gap:8px; margin-bottom:24px; position:relative; z-index:2;">
+                            <span class="material-symbols-rounded notranslate" translate="no"
+                                style="font-size:20px;">event</span>
+                            <span style="font-family:'Google Sans', sans-serif; font-weight:500;">General Election
+                                2029</span>
+                        </div>
+                        <div style="display:flex; gap:16px; margin-bottom: 24px; position:relative; z-index:2;">
+                            <div>
+                                <div class="countdown-number notranslate" translate="no">1024</div>
+                                <div class="countdown-label">Days</div>
+                            </div>
+                            <div style="padding-top:8px; font-size:1.5rem; opacity:0.5;">:</div>
+                            <div>
+                                <div class="countdown-number notranslate" translate="no">14</div>
+                                <div class="countdown-label">Hrs</div>
+                            </div>
+                        </div>
+                        <div
+                            style="background:rgba(255,255,255,0.15); padding:12px 16px; border-radius:12px; font-size:0.875rem; position:relative; z-index:2;">
+                            <strong>Phase 1:</strong> Est. April 2029
+                        </div>
+                    </div>
+
+                    <!-- Activity Feed -->
+                    <div class="m3-card-inner">
+                        <h3
+                            style="font-family:'Google Sans', sans-serif; font-size:1.125rem; font-weight:500; color:var(--text-primary); margin-bottom: 20px;">
+                            Recent Activity</h3>
+
+                        <div class="activity-item">
+                            <div class="activity-icon"><span class="material-symbols-rounded notranslate" translate="no"
+                                    style="font-size:18px;">app_registration</span></div>
+                            <div>
+                                <div class="activity-text">Account initialized on local device.</div>
+                                <div class="activity-time">Just now</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon"><span class="material-symbols-rounded notranslate" translate="no"
+                                    style="font-size:18px;">visibility</span></div>
+                            <div>
+                                <div class="activity-text">Viewed <strong>National Unity</strong> profile.</div>
+                                <div class="activity-time">2 mins ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background:var(--g-green-light); color:var(--g-green);">
+                                <span class="material-symbols-rounded notranslate" translate="no"
+                                    style="font-size:18px;">verified_user</span></div>
+                            <div>
+                                <div class="activity-text">Local privacy sandbox active.</div>
+                                <div class="activity-time">System</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= COMPARE VIEW (Enhanced) ================= -->
+        <div id="view-comparison" class="view app-view">
+            <div class="app-header">
+                <h1 class="app-title">Policy Matrix</h1>
+                <p class="app-subtitle">Direct comparison across key national sectors, verified by ECI manifestos.</p>
+            </div>
+
+            <div class="m3-container" style="padding: 24px; overflow:hidden;">
+
+                <!-- Compare Toolbar (Tabs, Search, Export) -->
+                <div class="compare-toolbar">
+                    <div class="m3-tabs">
+                        <button class="m3-tab active" onclick="filterPolicies('all', this)">All Issues</button>
+                        <button class="m3-tab" onclick="filterPolicies('economy', this)">Economy</button>
+                        <button class="m3-tab" onclick="filterPolicies('social', this)">Social</button>
+                        <button class="m3-tab" onclick="filterPolicies('governance', this)">Governance</button>
+                        <button class="m3-tab" onclick="filterPolicies('environment', this)">Environment</button>
+                    </div>
+
+                    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                        <div class="search-box">
+                            <span class="material-symbols-rounded notranslate" translate="no">search</span>
+                            <input type="text" placeholder="Search policies...">
+                        </div>
+                        <button class="btn-secondary" style="padding: 8px 16px;">
+                            <span class="material-symbols-rounded notranslate" translate="no"
+                                style="font-size: 18px;">download</span> Export
+                        </button>
+                    </div>
+                </div>
+
+                <div style="overflow-x:auto;">
+                    <table class="m3-table" id="policy-table">
+                        <thead style="background:var(--bg-secondary);">
+                            <tr>
+                                <th style="width:22%;">Issue Area</th>
+                                <th style="width:26%; color:var(--g-blue);">National Unity</th>
+                                <th style="width:26%; color:var(--g-green);">Prog. Alliance</th>
+                                <th style="width:26%; color:var(--text-primary);">Civic Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-category="economy">
+                                <td style="font-weight:500; color:var(--text-primary);">GDP Growth</td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span> Target 8% via
+                                            FDI</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-partial"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">remove</span> Target 7%
+                                            Inclusive</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-partial"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">remove</span> Target 6.5%
+                                            Green</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-category="social">
+                                <td style="font-weight:500; color:var(--text-primary);">Healthcare</td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-partial"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">remove</span> Expand existing
+                                            schemes</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span> Universal
+                                            Right to Health</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span> Digital
+                                            Health ID Integration</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-category="economy">
+                                <td style="font-weight:500; color:var(--text-primary);">Tax Reform</td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span> Lower
+                                            Corporate Tax</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span> Introduce
+                                            Wealth Tax</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-none"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">horizontal_rule</span> No
+                                            detailed stance</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-category="governance">
+                                <td style="font-weight:500; color:var(--text-primary);">Digital Privacy</td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-partial"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">remove</span> Regulated tech
+                                            sector</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-partial"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">remove</span> New data protection
+                                            bill</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span>
+                                            Constitutional Privacy Right</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-category="economy">
+                                <td style="font-weight:500; color:var(--text-primary);">Agriculture & Farmers</td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span> Market-driven
+                                            reforms</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span> Legal
+                                            guarantee for MSP</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-partial"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">remove</span> Co-operative
+                                            farming focus</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-category="social">
+                                <td style="font-weight:500; color:var(--text-primary);">Education</td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-partial"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">remove</span> Expand STEM
+                                            institutes</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span> Increase
+                                            budget to 6% GDP</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span> Free primary
+                                            digital access</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-category="environment">
+                                <td style="font-weight:500; color:var(--text-primary);">Environment & Energy</td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span> 50%
+                                            Renewables by 2030</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-partial"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">remove</span> Green jobs
+                                            initiative</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td-content">
+                                        <span class="status-match"><span class="material-symbols-rounded notranslate"
+                                                translate="no" style="font-size:18px;">check_circle</span> Net-zero by
+                                            2050 target</span>
+                                        <span class="material-symbols-rounded info-icon notranslate" translate="no"
+                                            title="View details">info</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= QUIZ VIEW ================= -->
+        <div id="view-quiz" class="view app-view">
+            <div class="app-header" style="text-align:center;">
+                <h1 class="app-title">Civic Knowledge</h1>
+                <p class="app-subtitle">Testing fundamental awareness of democratic mechanics.</p>
+            </div>
+
+            <div class="m3-container" style="max-width:600px; margin:0 auto;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <span style="font-family:'Google Sans',sans-serif; font-weight:500; color:var(--g-blue);">Question 1
+                        of 5</span>
+                </div>
+
+                <!-- Material Progress -->
+                <div
+                    style="height:4px; background:var(--bg-secondary); border-radius:4px; margin-bottom:32px; overflow:hidden;">
+                    <div style="width:20%; height:100%; background:var(--g-blue); border-radius:4px;"></div>
+                </div>
+
+                <h3
+                    style="font-family:'Google Sans',sans-serif; font-size:1.25rem; font-weight:400; color:var(--text-primary); line-height:1.5;">
+                    What is the primary function of the Election Commission of India (ECI)?
+                </h3>
+
+                <div class="m3-radio-group" id="quiz-options">
+                    <div class="m3-radio-option" onclick="selectQuiz(this, false)">
+                        <span class="material-symbols-rounded notranslate" translate="no"
+                            style="color:var(--text-disabled)">radio_button_unchecked</span>
+                        To draft laws and constitutional amendments.
+                    </div>
+                    <div class="m3-radio-option" onclick="selectQuiz(this, true)">
+                        <span class="material-symbols-rounded notranslate" translate="no"
+                            style="color:var(--text-disabled)">radio_button_unchecked</span>
+                        To superintend, direct, and control elections.
+                    </div>
+                    <div class="m3-radio-option" onclick="selectQuiz(this, false)">
+                        <span class="material-symbols-rounded notranslate" translate="no"
+                            style="color:var(--text-disabled)">radio_button_unchecked</span>
+                        To audit government expenditures.
+                    </div>
+                </div>
+
+                <div id="quiz-feedback"
+                    style="display:none; margin-top:24px; padding:16px; border-radius:12px; font-family:'Google Sans',sans-serif; font-weight:500; font-size:0.9375rem;">
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= LOGIN / VERIFY VIEW ================= -->
+        <div id="view-login" class="view app-view">
+            <div style="display:flex; align-items:center; justify-content:center; min-height:calc(100vh - 200px);">
+                <div class="m3-container"
+                    style="max-width:480px; width:100%; text-align:center; padding: 48px 32px; position:relative;">
+
+                    <!-- Stepper Indicator -->
+                    <div class="stepper" id="login-stepper">
+                        <div class="step-dot active" id="dot-1"></div>
+                        <div class="step-dot" id="dot-2"></div>
+                        <div class="step-dot" id="dot-3"></div>
+                    </div>
+
+                    <!-- Step 1: Mobile & OTP -->
+                    <div id="login-step-1" class="login-step">
+                        <div
+                            style="width:64px; height:64px; background:var(--g-blue-light); color:var(--g-blue); border-radius:16px; display:flex; align-items:center; justify-content:center; margin:0 auto 24px;">
+                            <span class="material-symbols-rounded notranslate" translate="no"
+                                style="font-size:32px;">smartphone</span>
+                        </div>
+                        <h2
+                            style="font-family:'Google Sans Display',sans-serif; font-size:1.75rem; color:var(--text-primary); margin-bottom:8px;">
+                            Sign In</h2>
+                        <p style="color:var(--text-secondary); margin-bottom:32px;">Enter your mobile number to receive
+                            a secure One-Time Password.</p>
+
+                        <div id="phone-input-section">
+                            <div class="m3-input-group">
+                                <label class="m3-input-label">Mobile Number</label>
+                                <div style="display:flex; align-items:center; position:relative;">
+                                    <span class="notranslate" translate="no"
+                                        style="position:absolute; left:16px; color:var(--text-secondary); font-weight:500;">+91</span>
+                                    <input type="tel" class="m3-input" placeholder="98765 43210"
+                                        style="padding-left: 54px;" maxlength="10">
+                                </div>
+                            </div>
+                            <button id="send-otp-btn" class="btn-primary"
+                                style="width:100%; justify-content:center; padding: 14px;" onclick="simulateOTP()">
+                                Send Secure OTP
+                            </button>
+                        </div>
+
+                        <div id="otp-input-section" style="display:none; animation: fadeIn 0.4s var(--ease-google);">
+                            <label class="m3-input-label" style="text-align:center;">Enter 4-digit OTP sent to your
+                                number</label>
+                            <div class="otp-container">
+                                <input type="text" class="otp-input notranslate" translate="no" maxlength="1"
+                                    onkeyup="moveToNext(this, 'otp-2')">
+                                <input type="text" class="otp-input notranslate" translate="no" id="otp-2" maxlength="1"
+                                    onkeyup="moveToNext(this, 'otp-3')">
+                                <input type="text" class="otp-input notranslate" translate="no" id="otp-3" maxlength="1"
+                                    onkeyup="moveToNext(this, 'otp-4')">
+                                <input type="text" class="otp-input notranslate" translate="no" id="otp-4" maxlength="1"
+                                    onkeyup="verifyOTP()">
+                            </div>
+                            <p style="font-size:0.875rem; color:var(--text-disabled); margin-top:16px;">Didn't receive
+                                code? <a href="#" style="color:var(--g-blue); text-decoration:none;">Resend</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: KYC Details -->
+                    <div id="login-step-2" class="login-step" style="display:none;">
+                        <div
+                            style="width:64px; height:64px; background:var(--g-yellow-light); color:#d97706; border-radius:16px; display:flex; align-items:center; justify-content:center; margin:0 auto 24px;">
+                            <span class="material-symbols-rounded notranslate" translate="no"
+                                style="font-size:32px;">badge</span>
+                        </div>
+                        <h2
+                            style="font-family:'Google Sans Display',sans-serif; font-size:1.75rem; color:var(--text-primary); margin-bottom:8px;">
+                            Identity Link</h2>
+                        <p style="color:var(--text-secondary); margin-bottom:32px; font-size:0.9375rem;">To access local
+                            voter insights, securely link your ECI profile. Data is stored strictly on-device.</p>
+
+                        <div class="m3-input-group">
+                            <label class="m3-input-label">Aadhaar Number</label>
+                            <div style="position:relative;">
+                                <input type="text" class="m3-input notranslate" translate="no"
+                                    placeholder="XXXX XXXX XXXX" maxlength="14" style="padding-left:48px;">
+                                <span class="material-symbols-rounded notranslate" translate="no"
+                                    style="position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--text-disabled); font-size:20px;">fingerprint</span>
+                            </div>
+                        </div>
+
+                        <div class="m3-input-group">
+                            <label class="m3-input-label">Voter ID (EPIC Number)</label>
+                            <div style="position:relative;">
+                                <input type="text" class="m3-input notranslate" translate="no" placeholder="ABC1234567"
+                                    maxlength="10" style="padding-left:48px; text-transform:uppercase;">
+                                <span class="material-symbols-rounded notranslate" translate="no"
+                                    style="position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--text-disabled); font-size:20px;">how_to_vote</span>
+                            </div>
+                        </div>
+
+                        <button id="verify-kyc-btn" class="btn-primary"
+                            style="width:100%; justify-content:center; padding: 14px; margin-top: 12px;"
+                            onclick="simulateKYC()">
+                            Verify Documents
+                        </button>
+                        <div
+                            style="display:flex; align-items:center; justify-content:center; gap:6px; margin-top:16px; color:var(--text-disabled); font-size:0.75rem;">
+                            <span class="material-symbols-rounded notranslate" translate="no"
+                                style="font-size:14px;">lock</span> End-to-end encrypted
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Success -->
+                    <div id="login-step-3" class="login-step" style="display:none;">
+                        <div
+                            style="width:80px; height:80px; background:var(--g-green-light); color:var(--g-green); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; animation: scaleIn 0.5s var(--ease-google);">
+                            <span class="material-symbols-rounded notranslate" translate="no"
+                                style="font-size:48px;">verified</span>
+                        </div>
+                        <h2
+                            style="font-family:'Google Sans Display',sans-serif; font-size:1.75rem; color:var(--text-primary); margin-bottom:8px;">
+                            Verification Complete</h2>
+                        <p style="color:var(--text-secondary); margin-bottom:32px;">Your identity has been securely
+                            verified. Redirecting you to your civic dashboard...</p>
+
+                        <div
+                            style="width:40px; height:4px; background:var(--border-color); border-radius:4px; margin:0 auto; overflow:hidden;">
+                            <div
+                                style="width:100%; height:100%; background:var(--g-green); animation: slideRight 2s linear infinite;">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform: About -->
+        <div id="view-about" class="view app-view">
+            <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
+                <button class="btn-back" onclick="switchView('landing')">
+                    <span class="material-symbols-rounded">arrow_back</span> Back to Overview
+                </button>
+            </div>
+            <div class="app-header">
+                <h1 class="app-title">About V2I</h1>
+                <p class="app-subtitle">The vision behind India's premier civic intelligence platform.</p>
+            </div>
+            <div class="m3-container">
+                <div class="m3-card-inner">
+                    <h2 class="m3-feature-title">Our Mission</h2>
+                    <p class="m3-feature-desc" style="font-size: 1.125rem; margin-bottom: 24px;">
+                        V2I (Vote 2 India) was founded on the principle that a well-informed electorate is the cornerstone of a vibrant democracy. In a landscape often cluttered with fragmented information and biased narratives, we provide a unified, AI-driven platform that delivers clear, neutral, and accessible policy analysis to every Indian voter.
+                    </p>
+                    <div class="m3-grid">
+                        <div class="m3-feature-card">
+                            <div class="m3-icon-box" style="background: var(--g-blue-light); color: var(--g-blue);">
+                                <span class="material-symbols-rounded">verified</span>
+                            </div>
+                            <h3 class="m3-feature-title">Neutrality</h3>
+                            <p class="m3-feature-desc">We use advanced LLMs to analyze manifestos without political bias, focusing purely on policy intent.</p>
+                        </div>
+                        <div class="m3-feature-card">
+                            <div class="m3-icon-box" style="background: var(--g-green-light); color: var(--g-green);">
+                                <span class="material-symbols-rounded">translate</span>
+                            </div>
+                            <h3 class="m3-feature-title">Accessibility</h3>
+                            <p class="m3-feature-desc">Breaking language barriers by providing real-time translations in 12+ regional Indian languages.</p>
+                        </div>
+                        <div class="m3-feature-card">
+                            <div class="m3-icon-box" style="background: var(--g-yellow-light); color: var(--g-yellow);">
+                                <span class="material-symbols-rounded">security</span>
+                            </div>
+                            <h3 class="m3-feature-title">Privacy</h3>
+                            <p class="m3-feature-desc">Built with a privacy-first architecture, ensuring your personal identity and voting preferences remain anonymous.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform: Methodology -->
+        <div id="view-methodology" class="view app-view">
+            <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
+                <button class="btn-back" onclick="switchView('landing')">
+                    <span class="material-symbols-rounded">arrow_back</span> Back to Overview
+                </button>
+            </div>
+            <div class="app-header">
+                <h1 class="app-title">Our Methodology</h1>
+                <p class="app-subtitle">How we transform raw political data into actionable intelligence.</p>
+            </div>
+            <div class="m3-container">
+                <div class="m3-card-inner">
+                    <h2 class="m3-feature-title">The V2I Analysis Pipeline</h2>
+                    <div class="m3-list-item">
+                        <div class="m3-avatar" style="background: var(--g-blue); color: #fff;">1</div>
+                        <div class="m3-info">
+                            <div class="m3-name">Data Ingestion</div>
+                            <div class="m3-sub">We crawl official party websites and ECI filings for the latest manifestos and policy documents.</div>
+                        </div>
+                    </div>
+                    <div class="m3-list-item">
+                        <div class="m3-avatar" style="background: var(--g-red); color: #fff;">2</div>
+                        <div class="m3-info">
+                            <div class="m3-name">AI Synthesis</div>
+                            <div class="m3-sub">Our Google Gemini-powered engine extracts key promises across 10 core sectors (Economy, Health, Education, etc.).</div>
+                        </div>
+                    </div>
+                    <div class="m3-list-item">
+                        <div class="m3-avatar" style="background: var(--g-green); color: #fff;">3</div>
+                        <div class="m3-info">
+                            <div class="m3-name">Alignment Scoring</div>
+                            <div class="m3-sub">Policies are cross-referenced with your anonymous preferences to generate an objective alignment score.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform: Security -->
+        <div id="view-security" class="view app-view">
+            <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
+                <button class="btn-back" onclick="switchView('landing')">
+                    <span class="material-symbols-rounded">arrow_back</span> Back to Overview
+                </button>
+            </div>
+            <div class="app-header">
+                <h1 class="app-title">Security & Privacy</h1>
+                <p class="app-subtitle">Your trust is our most valuable asset.</p>
+            </div>
+            <div class="m3-container">
+                <div class="m3-card-inner">
+                    <div class="trust-grid" style="margin-top: 0;">
+                        <div class="trust-item">
+                            <span class="material-symbols-rounded trust-icon">lock</span>
+                            <div class="trust-content">
+                                <h3>Zero PII Retention</h3>
+                                <p>We do not store your Aadhaar or EPIC numbers. They are hashed locally and used only for one-time verification.</p>
+                            </div>
+                        </div>
+                        <div class="trust-item">
+                            <span class="material-symbols-rounded trust-icon">encrypted</span>
+                            <div class="trust-content">
+                                <h3>End-to-End Encryption</h3>
+                                <p>All data transmitted between your device and our servers is protected by industry-standard TLS 1.3 encryption.</p>
+                            </div>
+                        </div>
+                        <div class="trust-item">
+                            <span class="material-symbols-rounded trust-icon">visibility_off</span>
+                            <div class="trust-content">
+                                <h3>Anonymous Analytics</h3>
+                                <p>Usage metrics are aggregated and anonymized to ensure individual voting patterns can never be reconstructed.</p>
+                            </div>
+                        </div>
+                        <div class="trust-item">
+                            <span class="material-symbols-rounded trust-icon">gavel</span>
+                            <div class="trust-content">
+                                <h3>Regulatory Compliance</h3>
+                                <p>Fully compliant with India's Digital Personal Data Protection (DPDP) Act 2023.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources: ECI -->
+        <div id="view-eci" class="view app-view">
+            <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
+                <button class="btn-back" onclick="switchView('landing')">
+                    <span class="material-symbols-rounded">arrow_back</span> Back to Overview
+                </button>
+            </div>
+            <div class="app-header">
+                <h1 class="app-title">ECI Guidelines</h1>
+                <p class="app-subtitle">Official resources from the Election Commission of India.</p>
+            </div>
+            <div class="m3-container">
+                <div class="m3-card-inner">
+                    <div class="m3-grid">
+                        <div class="m3-feature-card">
+                            <h3 class="m3-feature-title">Voter Education</h3>
+                            <p class="m3-feature-desc">Learn about the SVEEP (Systematic Voters' Education and Electoral Participation) program.</p>
+                            <a href="https://eci.gov.in/sveep/" target="_blank" rel="noopener noreferrer" class="m3-btn-text">Visit ECI <span class="material-symbols-rounded">open_in_new</span></a>
+                        </div>
+                        <div class="m3-feature-card">
+                            <h3 class="m3-feature-title">Electoral Laws</h3>
+                            <p class="m3-feature-desc">Access the Model Code of Conduct and other electoral regulations.</p>
+                            <a href="https://eci.gov.in/electoral-laws/" target="_blank" rel="noopener noreferrer" class="m3-btn-text">Read Laws <span class="material-symbols-rounded">open_in_new</span></a>
+                        </div>
+                        <div class="m3-feature-card">
+                            <h3 class="m3-feature-title">Voter Portal</h3>
+                            <p class="m3-feature-desc">Register to vote, update your details, or download your e-EPIC card.</p>
+                            <a href="https://voters.eci.gov.in/" target="_blank" rel="noopener noreferrer" class="m3-btn-text">Go to Portal <span class="material-symbols-rounded">open_in_new</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources: Languages -->
+        <div id="view-languages" class="view app-view">
+            <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
+                <button class="btn-back" onclick="switchView('landing')">
+                    <span class="material-symbols-rounded">arrow_back</span> Back to Overview
+                </button>
+            </div>
+            <div class="app-header">
+                <h1 class="app-title">Language Packs</h1>
+                <p class="app-subtitle">Democracy speaks every language.</p>
+            </div>
+            <div class="m3-container">
+                <div class="m3-card-inner">
+                    <p class="m3-feature-desc" style="margin-bottom: 24px;">V2I supports the following 12 regional languages through our advanced neural translation engine:</p>
+                    <div class="m3-grid" style="grid-template-columns: repeat(4, 1fr);">
+                        <div class="m3-tag">English</div>
+                        <div class="m3-tag">Hindi (हिन्दी)</div>
+                        <div class="m3-tag">Bengali (বাংলা)</div>
+                        <div class="m3-tag">Telugu (తెలుగు)</div>
+                        <div class="m3-tag">Marathi (मराठी)</div>
+                        <div class="m3-tag">Tamil (தமிழ்)</div>
+                        <div class="m3-tag">Gujarati (ગુજરાતી)</div>
+                        <div class="m3-tag">Urdu (اردو)</div>
+                        <div class="m3-tag">Kannada (ಕನ್ನಡ)</div>
+                        <div class="m3-tag">Odia (ଓଡ଼ିଆ)</div>
+                        <div class="m3-tag">Malayalam (മലയാളം)</div>
+                        <div class="m3-tag">Punjabi (ਪੰਜਾਬੀ)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources: API -->
+        <div id="view-api" class="view app-view">
+            <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
+                <button class="btn-back" onclick="switchView('landing')">
+                    <span class="material-symbols-rounded">arrow_back</span> Back to Overview
+                </button>
+            </div>
+            <div class="app-header">
+                <h1 class="app-title">API Documentation</h1>
+                <p class="app-subtitle">Build the future of civic tech with V2I Data.</p>
+            </div>
+            <div class="m3-container">
+                <div class="m3-card-inner">
+                    <div class="m3-list-item">
+                        <div class="m3-avatar" style="background: var(--bg-secondary); color: var(--text-primary);"><span class="material-symbols-rounded">api</span></div>
+                        <div class="m3-info">
+                            <div class="m3-name">GET /v1/parties</div>
+                            <div class="m3-sub">Retrieve a list of all recognized political parties and their basic profiles.</div>
+                        </div>
+                    </div>
+                    <div class="m3-list-item">
+                        <div class="m3-avatar" style="background: var(--bg-secondary); color: var(--text-primary);"><span class="material-symbols-rounded">api</span></div>
+                        <div class="m3-info">
+                            <div class="m3-name">GET /v1/manifesto/{party_id}</div>
+                            <div class="m3-sub">Get AI-synthesized summaries of manifesto promises for a specific party.</div>
+                        </div>
+                    </div>
+                    <p class="m3-feature-desc" style="margin-top: 24px;">Full documentation available at <code style="background: var(--bg-secondary); padding: 4px 8px; border-radius: 4px;">api.v2i.org/docs</code></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal: Privacy -->
+        <div id="view-privacy" class="view app-view">
+            <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
+                <button class="btn-back" onclick="switchView('landing')">
+                    <span class="material-symbols-rounded">arrow_back</span> Back to Overview
+                </button>
+            </div>
+            <div class="app-header">
+                <h1 class="app-title">Privacy Policy</h1>
+                <p class="app-subtitle">Last Updated: May 2026</p>
+            </div>
+            <div class="m3-container">
+                <div class="m3-card-inner">
+                    <h3 class="m3-feature-title">1. Information We Collect</h3>
+                    <p class="m3-feature-desc">V2I is designed to minimize data collection. We collect anonymous usage data and temporary session identifiers only.</p>
+                    <h3 class="m3-feature-title" style="margin-top: 20px;">2. How We Use Data</h3>
+                    <p class="m3-feature-desc">Data is used solely to provide personalized policy alignment scores and improve the accuracy of our AI synthesis engine.</p>
+                    <h3 class="m3-feature-title" style="margin-top: 20px;">3. Data Sovereignty</h3>
+                    <p class="m3-feature-desc">All user data resides on servers located within India, in compliance with national data residency requirements.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal: TOS -->
+        <div id="view-tos" class="view app-view">
+            <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
+                <button class="btn-back" onclick="switchView('landing')">
+                    <span class="material-symbols-rounded">arrow_back</span> Back to Overview
+                </button>
+            </div>
+            <div class="app-header">
+                <h1 class="app-title">Terms of Service</h1>
+                <p class="app-subtitle">Usage guidelines for the V2I platform.</p>
+            </div>
+            <div class="m3-container">
+                <div class="m3-card-inner">
+                    <h3 class="m3-feature-title">1. Acceptance of Terms</h3>
+                    <p class="m3-feature-desc">By accessing V2I, you agree to use the platform for informational, non-partisan civic engagement only.</p>
+                    <h3 class="m3-feature-title" style="margin-top: 20px;">2. Content Accuracy</h3>
+                    <p class="m3-feature-desc">While we strive for 100% accuracy, our AI-generated summaries should be cross-verified with official party documents.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal: License -->
+        <div id="view-license" class="view app-view">
+            <div class="m3-container" style="margin-bottom: 0; padding-bottom: 0;">
+                <button class="btn-back" onclick="switchView('landing')">
+                    <span class="material-symbols-rounded">arrow_back</span> Back to Overview
+                </button>
+            </div>
+            <div class="app-header">
+                <h1 class="app-title">Open Source License</h1>
+                <p class="app-subtitle">V2I is built on the spirit of open collaboration.</p>
+            </div>
+            <div class="m3-container">
+                <div class="m3-card-inner">
+                    <h3 class="m3-feature-title">Apache License 2.0</h3>
+                    <p class="m3-feature-desc" style="font-family: monospace; white-space: pre-wrap; background: var(--bg-secondary); padding: 16px; border-radius: 12px; margin-top: 16px;">
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="assets/js/app.js"></script>
+</body>
+
+
+</html>
