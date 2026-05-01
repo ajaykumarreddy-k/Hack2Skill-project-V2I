@@ -49,7 +49,7 @@
         <div style="display:flex; align-items:center; gap:16px;">
             <!-- Language Selector -->
             <div class="nav-lang-selector">
-                <button class="nav-lang-btn" onclick="toggleLangMenu()">
+                <button class="nav-lang-btn" onclick="toggleLangMenu()" aria-label="Select Language" aria-haspopup="true" aria-expanded="false">
                     <span class="material-symbols-rounded notranslate" translate="no"
                         style="font-size:18px;">translate</span>
                     <span id="current-lang-label" class="notranslate" translate="no">EN</span>
@@ -1573,6 +1573,7 @@ limitations under the License.</p>
 
     </main>
 
+    <script src="assets/js/google-services.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 

@@ -9,7 +9,7 @@ from fastapi import Depends, FastAPI, HTTPException, Security
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security.api_key import APIKeyHeader
 
-from .routers import policies
+from .routers import policies, voter
 
 load_dotenv()
 
@@ -52,6 +52,7 @@ app.add_middleware(
 )
 
 app.include_router(policies.router, dependencies=[Depends(get_api_key)])
+app.include_router(voter.router, dependencies=[Depends(get_api_key)])
 
 
 @app.get("/health")

@@ -5,6 +5,8 @@ from fastapi import APIRouter, Depends, Query
 
 from ..cache import get_cache
 from ..db import get_db
+from ...ai.google_vertex import analyze_manifesto
+from ..google_maps import get_constituency_geocode
 
 router = APIRouter(prefix='/api/v1')
 
@@ -106,3 +108,16 @@ async def compute_alignment(responses: Dict[str, Any], db=Depends(get_db)):
         'scores': scores,
         'top_match': max(scores, key=scores.get) if scores else None
     }
+
+
+@router.post('/policies/analyze')
+async def analyze_party_manifesto(request: Dict[str, str]):
+    """
+    Trigger AI analysis of a party manifesto using Google Vertex AI.
+    """
+    manifesto_text = request.get('text', '')
+    if not manifesto_text:
+        raise HTTPException(status_code=400, detail="Manifesto text required")
+    
+    analysis = analyze_manifesto(manifesto_text)
+    return analysis

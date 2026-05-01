@@ -6,11 +6,16 @@ import asyncpg
 from dotenv import load_dotenv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyMuPDFLoader
-from openai import AsyncOpenAI
+from google.cloud import aiplatform
+import vertexai
+from vertexai.generative_models import GenerativeModel, Part
 
 load_dotenv()
 
-client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", "vote2india-prod")
+LOCATION = os.getenv("VERTEX_LOCATION", "us-central1")
+vertexai.init(project=PROJECT_ID, location=LOCATION)
+model = GenerativeModel("gemini-1.5-pro")
 
 # VULN-FIX: SSRF protection — only allow GCS or HTTPS URLs from trusted buckets.
 # Without this, an attacker could pass file:///etc/passwd or http://169.254.169.254
@@ -53,14 +58,18 @@ async def process_manifesto(gcs_url: str, party_id: str):
 
     results = []
     for chunk in chunks:
-        resp = await client.chat.completions.create(
-            model='gpt-4o',
-            messages=[{'role': 'user', 'content': CLASSIFY_PROMPT.format(text=chunk.page_content)}],
-            response_format={'type': 'json_object'}
+        # Use Gemini Pro for policy extraction
+        response = model.generate_content(
+            CLASSIFY_PROMPT.format(text=chunk.page_content),
+            generation_config={"response_mime_type": "application/json"}
         )
-        data = json.loads(resp.choices[0].message.content)
-        if data['confidence'] > 0.7:  # Only store high-confidence extractions
-            results.append({'party_id': party_id, **data})
+        
+        try:
+            data = json.loads(response.text)
+            if data.get('confidence', 0) > 0.7:  # Only store high-confidence extractions
+                results.append({'party_id': party_id, **data})
+        except Exception as e:
+            print(f"Error parsing Gemini response: {e}")
 
     await upsert_policies(results)  # Deduplicate by category
     return {'processed_chunks': len(chunks), 'stored_policies': len(results)}

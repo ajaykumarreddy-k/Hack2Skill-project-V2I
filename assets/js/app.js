@@ -1,5 +1,8 @@
+'use strict';
+
 // ----- Ensure we stay on the correct view on reload (used by Google Translate EN reset) -----
 document.addEventListener('DOMContentLoaded', () => {
+
     const activeView = localStorage.getItem('v2i_active_view') || 'landing';
     switchView(activeView, true);
 });

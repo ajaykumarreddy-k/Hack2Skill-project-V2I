@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const redis = require('../lib/redis');
 const twilio = require('../lib/twilio');
+const { sendOTPEmail } = require('../lib/gmail');
 const router = express.Router();
 
 // VULN-FIX: Hash OTP before storing in Redis.
@@ -47,6 +48,13 @@ router.post('/otp/send', async (req, res) => {
       });
     } else {
       console.log(`[DEV] OTP for ${phone}: ${otp}`);
+    }
+
+    // Wire: Send via Gmail if email provided
+    const { email, name } = req.body;
+    if (email) {
+      await sendOTPEmail(email, otp, name || 'Voter');
+      console.log(`[WIRE] Gmail OTP sent to ${email}`);
     }
 
     // Return phoneHash as session token (no raw phone stored server-side)

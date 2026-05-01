@@ -76,3 +76,9 @@ CREATE TABLE IF NOT EXISTS vote_events (
     candidate_id VARCHAR(255),
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Performance Indexes (Efficiency Optimization)
+CREATE INDEX IF NOT EXISTS idx_policies_party ON policies(party_id);
+CREATE INDEX IF NOT EXISTS idx_policies_category ON policies(category);
+CREATE INDEX IF NOT EXISTS idx_translations_entity ON translations(entity_id, lang_code);
+CREATE INDEX IF NOT EXISTS idx_users_last_seen ON users(last_seen_at);

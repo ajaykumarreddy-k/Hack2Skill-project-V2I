@@ -1,7 +1,10 @@
+'use strict';
+
 /**
  * Google Services client-side integration for Vote2India.
  * Handles Maps, Charts, and Analytics.
  */
+
 
 /**
  * Initialize Google Charts for election results visualization.

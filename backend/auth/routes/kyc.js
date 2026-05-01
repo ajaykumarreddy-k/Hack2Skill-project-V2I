@@ -2,6 +2,7 @@ const express = require('express');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const { Pool } = require('pg');
+const firebaseAdmin = require('../lib/firebase_admin');
 const router = express.Router();
 
 const pool = new Pool({
@@ -68,7 +69,10 @@ router.post('/kyc/verify', authenticateKycToken, async (req, res) => {
     const user = userResult.rows[0];
     const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '30d' });
     
-    res.json({ accessToken, userId: user.id });
+    // Wire: Generate Firebase custom token for frontend integration
+    const firebaseToken = await firebaseAdmin.auth().createCustomToken(user.id);
+    
+    res.json({ accessToken, userId: user.id, firebaseToken });
   } catch (error) {
     console.error('KYC Verify Error:', error);
     res.status(500).json({ error: 'Internal server error during KYC' });
