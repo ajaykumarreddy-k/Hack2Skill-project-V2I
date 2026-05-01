@@ -32,9 +32,9 @@
 
     <!-- NAVIGATION -->
     <nav class="nav" id="main-nav">
-        <a class="nav-logo notranslate" translate="no" onclick="switchView('landing')">
+        <a class="nav-logo notranslate" translate="no" onclick="switchView('landing')" role="link" aria-label="V2I Home" tabindex="0">
             <div class="g-logo-icon">
-                <span class="material-symbols-rounded notranslate" translate="no">how_to_vote</span>
+                <span class="material-symbols-rounded notranslate" translate="no" aria-hidden="true">how_to_vote</span>
             </div>
             V2I
         </a>
@@ -84,9 +84,9 @@
             </div>
 
             <!-- Secure Login Button -->
-            <button id="nav-login-btn" class="btn-secure-login" onclick="switchView('login')">
+            <button id="nav-login-btn" class="btn-secure-login" onclick="switchView('login')" aria-label="Secure login to voter dashboard">
                 <span class="material-symbols-rounded notranslate" translate="no"
-                    style="font-size:20px;">lock_person</span>
+                    style="font-size:20px;" aria-hidden="true">lock_person</span>
                 <span class="notranslate" translate="no">Secure Login</span>
             </button>
         </div>
@@ -668,7 +668,7 @@
                                         </div>
                                     </div>
                                     <div class="evm-led"></div>
-                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)"></button>
+                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)" aria-label="Vote for National Unity"></button>
                                 </div>
 
                                 <!-- Candidate Row 2 -->
@@ -684,7 +684,7 @@
                                         </div>
                                     </div>
                                     <div class="evm-led"></div>
-                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)"></button>
+                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)" aria-label="Vote for Prog. Alliance"></button>
                                 </div>
 
                                 <!-- Candidate Row 3 -->
@@ -700,7 +700,7 @@
                                         </div>
                                     </div>
                                     <div class="evm-led"></div>
-                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)"></button>
+                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)" aria-label="Vote for Civic Action"></button>
                                 </div>
 
                                 <!-- NOTA -->
@@ -716,7 +716,7 @@
                                         </div>
                                     </div>
                                     <div class="evm-led"></div>
-                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)"></button>
+                                    <button class="evm-blue-btn" onclick="castTrialVote(this.parentElement)" aria-label="Vote for NOTA (None of the Above)"></button>
                                 </div>
                             </div>
                         </div>
