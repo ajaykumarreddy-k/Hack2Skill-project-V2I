@@ -136,5 +136,5 @@ V2I is built on the **"Zero Data Retention"** principle.
 Licensed under the **Apache License 2.0**. We invite developers and linguists to contribute to our mission of strengthening Indian democracy.
 
 ---
-*Created for the **Hack 2 Skill** Challenge by [Your Name/Team Name].*
+*Created for the **Hack 2 Skill** Challenge by [AjayKumarReddy.K].*
 # Hack2Skill-project-V2I
