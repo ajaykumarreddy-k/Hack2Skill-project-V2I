@@ -2,16 +2,20 @@
 ### The AI-Powered Civic Intelligence Platform for the Modern Indian Voter
 
 > [!IMPORTANT]
-> **Live Preview:** [v2i-beta.vercel.app](https://vote2india.vercel.app/)
+> **Live Preview:** [vote2india.vercel.app](https://vote2india.vercel.app/)
 > *Note: Backend services are currently in Mock Mode to preserve API quotas.*
 
-````carousel
-![Premium Component Showcase](v2i_component_showcase_1777632107249.png)
-<!-- slide -->
-![EVM Tactical Feedback Simulation](media__1777615436659.png)
-<!-- slide -->
-![Policy Alignment Dashboard](media__1777615453167.png)
-````
+<p align="center">
+  <img src="assets/image_of_homepage.png" width="100%" alt="V2I Homepage">
+</p>
+
+| 📊 Dashboard | ⚖️ Comparison | 📝 Quiz |
+| :---: | :---: | :---: |
+| <img src="assets/dashboard.png" width="100%"> | <img src="assets/compare.png" width="100%"> | <img src="assets/quiz.png" width="100%"> |
+
+<p align="center">
+  <img src="assets/login.png" width="45%" alt="Login"> &nbsp; <img src="assets/docs layout.png" width="45%" alt="Docs">
+</p>
 
 [![Hackathon](https://img.shields.io/badge/Hack--2--Skill-Top--300--Challenge-blueviolet?style=for-the-badge&logo=rocket)](https://hack2skill.com)
 [![Status](https://img.shields.io/badge/Status-Beta-orange?style=for-the-badge)](https://v2i.org.in)
