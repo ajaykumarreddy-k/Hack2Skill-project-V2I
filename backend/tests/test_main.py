@@ -1,7 +1,7 @@
 from unittest.mock import AsyncMock
 
 import pytest
-from httpx import AsyncClient
+from httpx import ASGITransport, AsyncClient
 
 from core.cache import get_cache
 from core.db import get_db
@@ -29,7 +29,7 @@ app.dependency_overrides[get_cache] = override_get_cache
 
 @pytest.mark.asyncio
 async def test_health_check():
-    async with AsyncClient(app=app, base_url="http://test") as ac:
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
         response = await ac.get("/health")
     assert response.status_code == 200
     assert "status" in response.json()
@@ -49,7 +49,7 @@ async def test_compare_policies_mocked():
         }
     ]
 
-    async with AsyncClient(app=app, base_url="http://test") as ac:
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
         response = await ac.get("/api/v1/policies/compare?category=economy")
 
     assert response.status_code == 200
@@ -67,7 +67,7 @@ async def test_alignment_scoring_mocked():
     ]
 
     payload = {"weights": {"healthcare": 5}}
-    async with AsyncClient(app=app, base_url="http://test") as ac:
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
         response = await ac.post("/api/v1/alignment/score", json=payload)
 
     assert response.status_code == 200
@@ -79,7 +79,7 @@ async def test_alignment_scoring_mocked():
 
 @pytest.mark.asyncio
 async def test_security_headers():
-    async with AsyncClient(app=app, base_url="http://test") as ac:
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
         response = await ac.get("/health")
     # Check for basic security headers if added
     assert "access-control-allow-origin" in response.headers
