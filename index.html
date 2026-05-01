@@ -38,11 +38,11 @@
             </div>
             V2I
         </a>
-        <div class="nav-links">
-            <a class="nav-link active" onclick="switchView('landing')">Overview</a>
-            <a class="nav-link" onclick="switchView('dashboard')">Dashboard</a>
-            <a class="nav-link" onclick="switchView('comparison')">Compare</a>
-            <a class="nav-link" onclick="switchView('quiz')">Quiz</a>
+        <div class="nav-links" role="menubar">
+            <a class="nav-link active" onclick="switchView('landing')" role="menuitem" tabindex="0" aria-label="Go to Overview">Overview</a>
+            <a class="nav-link" onclick="switchView('dashboard')" role="menuitem" tabindex="0" aria-label="Go to Dashboard">Dashboard</a>
+            <a class="nav-link" onclick="switchView('comparison')" role="menuitem" tabindex="0" aria-label="Go to Policy Comparison">Compare</a>
+            <a class="nav-link" onclick="switchView('quiz')" role="menuitem" tabindex="0" aria-label="Go to Civic Quiz">Quiz</a>
         </div>
 
         <div style="display:flex; align-items:center; gap:16px;">
@@ -92,7 +92,7 @@
         </div>
     </nav>
 
-    <main id="app">
+    <main id="app" role="main">
 
         <!-- ================= LANDING VIEW ================= -->
         <div id="view-landing" class="view">

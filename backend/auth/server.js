@@ -40,6 +40,10 @@ app.get('/health', (req, res) => {
 });
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Auth Service running on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Auth Service running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
