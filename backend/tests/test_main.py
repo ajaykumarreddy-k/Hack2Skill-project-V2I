@@ -80,6 +80,6 @@ async def test_alignment_scoring_mocked():
 @pytest.mark.asyncio
 async def test_security_headers():
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
-        response = await ac.get("/health")
+        response = await ac.get("/health", headers={"Origin": "http://localhost"})
     # Check for basic security headers if added
     assert "access-control-allow-origin" in response.headers
